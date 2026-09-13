@@ -1,7 +1,7 @@
 > This project needs new maintainers, see #15.
 
 
-![TAIGA IMAGE](https://git.harting.dev/TAIGA/TAIGA/raw/branch/master/taiga.png)
+![TAIGA IMAGE](https://media.forgecdn.net/attachments/65/923/2016-07-26_00.png)
 
 Tinkers Alloying Addon (TAIGA)
 ===============
@@ -19,13 +19,14 @@ Included:
  
 Download
 ===============
-[TAIGA on CurseForge](http://minecraft.curseforge.com/projects/taiga-tinkers-alloying-addon/files)
+* [Original mod on CurseForge](https://www.curseforge.com/minecraft/mc-mods/taiga-tinkers-alloying-addon)
+* [This fork](https://github.com/WinterMan8367/TAIGA-Replant/releases)
 
 Dependencies
 ===============
 Necessary:
-* Tinkers Construct for 1.12.2 + associated version of mantle
-* Minecraft Forge 1.12.2
+* Tinkers Construct for 1.12.2 + associated version of Mantle
+* Minecraft Forge 1.12.2, version 14.23.5.2816 or higher
 
 
 What's going on?
@@ -63,3 +64,19 @@ More? Join our community on mumble (ofsg.eu) for questions or to have a nice cha
 #### License
 
 This project is licensed under the conditions of the GNU GPL 3.0.
+
+For developers
+===============
+
+This project uses the following technologies:
+* Gradle 4.10.2
+    * ForgeGradle 2.3 - fork by anatawa12
+* JDK 8u212+
+
+Steps required to launch the mod:
+1. Run the `./gradlew` command in the project's root directory.
+2. After that, prepare the project for launch using the `./gradlew setupDecompWorkspace` command. Also, run this command whenever you modify `build.gradle`.
+3. After preparation, you can launch the game using the `./gradlew runClient` command.
+4. After making changes to the code, you can run the build using the `./gradlew build` command.
+
+__Notice__: It is best to make changes in PowerShell on Windows or in a bash terminal on Linux.
