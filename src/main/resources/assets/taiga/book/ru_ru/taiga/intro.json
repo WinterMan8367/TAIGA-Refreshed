@@ -1,0 +1,11 @@
+{
+  "title": "TAIGA: Tinkers' Alloying Addon",
+  "image": {
+    "file": "taiga:textures/gui/book/logo.png"
+  },
+  "text": [
+    {
+      "text": "TAIGA добавляет множество металлов и сплавов для поздних этапов игры. Далее вы узнаете, как найти новые руды, и ознакомитесь с другими возможностями TAIGA."
+    }
+  ]
+}
