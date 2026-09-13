@@ -403,6 +403,8 @@ modifier.crushing.name=Дробление
 modifier.crushing.desc=Шанс получить песок, гравий, булыжник или камень при добыче камня.
 modifier.crushing.name=Leveled
 modifier.crushing.desc=WIP
+modifier.mutate.name=Mutate
+modifier.mutate.desc=WIP
 
 gui.taiga_configuration.mainTitle=Конфигурация TAIGA
 itemGroup.taiga_block=Блоки TAIGA
