@@ -35,40 +35,16 @@ archivesBaseName = "taiga"
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-
-task buildInfo {
-    if (System.getenv().TAIGA_TAG != null) {
-        ext.revision = System.getenv().TAIGA_TAG
-    } else {
-        ext.revision = "snapshot"
-    }
-
-    if (System.getenv().BUILD_NUMBER != null) {
-        ext.buildNum = System.getenv().BUILD_NUMBER
-    }
-
-    def cmd = "git log \$(git tag --sort=-refname | sed -n '2p')..\$(git tag --sort=-refname | sed -n '1p') --oneline"
-    def proc = cmd.execute()
-    proc.waitFor()
-    if (proc.exitValue() == 0) {
-        ext.changes = proc.text.trim()
-    } else {
-        ext.changes = "N/A"
-    }
-}
-
-version = project.buildInfo.revision
+version = "${version_major}.${version_minor}.${version_patch}"
 
 minecraft {
-    version = "1.12.2-14.23.5.2816"
+    version = "${mc_version}-${forge_version}"
     runDir = "run"
-    mappings = "snapshot_20170801"
+    mappings = "${mcp_channel}_${mcp_version}"
     replace '@VERSION@', project.version
-}
 
-//noinspection GroovyAssignabilityCheck
-ext.mc_version = project.minecraft.version.split('-')[0]
-version = "${mc_version}-${project.buildInfo.revision}"
+    clientJvmArgs = ["-Xmx4096M", "-Xms024M", "-Dmymod.debug=true", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=75"]
+}
 
 dependencies {
     deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.+:deobf"
@@ -87,14 +63,14 @@ sourceSets {
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    inputs.property "mcversion", mc_version
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
 
         // replace version and mcversion
-        expand 'version': project.version, 'mcversion': project.minecraft.version
+        expand 'version': project.version, 'mcversion': mc_version
     }
 
     // copy everything else, thats not the mcmod.info
