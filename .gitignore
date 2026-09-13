@@ -35,6 +35,11 @@ $RECYCLE.BIN/
 .Trash-*
 
 
+### VSCode ###
+
+.vscode/
+
+
 ### Eclipse ###
 
 .metadata
