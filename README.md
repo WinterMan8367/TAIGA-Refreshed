@@ -1,6 +1,3 @@
-> This project needs new maintainers, see #15.
-
-
 ![TAIGA IMAGE](https://media.forgecdn.net/attachments/65/923/2016-07-26_00.png)
 
 Tinkers Alloying Addon (TAIGA)

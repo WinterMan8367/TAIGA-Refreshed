@@ -35,15 +35,23 @@ archivesBaseName = "taiga"
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-version = "${version_major}.${version_minor}.${version_patch}"
+def propsFile = file("build.properties")
+def config = new Properties()
+
+if (propsFile.exists()) {
+    propsFile.withInputStream { config.load(it) }
+}
+
+def mod_version = "${config.getProperty("version_major", "1")}.${config.getProperty("version_minor", "0")}.${config.getProperty("version_patch", "0")}"
+version = "${mc_version}-${mod_version}"
 
 minecraft {
     version = "${mc_version}-${forge_version}"
     runDir = "run"
     mappings = "${mcp_channel}_${mcp_version}"
     replace '@VERSION@', project.version
-
-    clientJvmArgs = ["-Xmx4096M", "-Xms024M", "-Dmymod.debug=true", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=75"]
+    clientRunArgs += ["--username", config.getProperty("username", "Player")]
+    clientJvmArgs = ["-Xmx2048M", "-Xms1024M", "-Dmymod.debug=true", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=75"]
 }
 
 dependencies {
@@ -62,7 +70,7 @@ sourceSets {
 //noinspection GroovyAssignabilityCheck
 processResources {
     // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
+    inputs.property "version", mod_version
     inputs.property "mcversion", mc_version
 
     // replace stuff in mcmod.info, nothing else
@@ -70,7 +78,7 @@ processResources {
         include 'mcmod.info'
 
         // replace version and mcversion
-        expand 'version': project.version, 'mcversion': mc_version
+        expand 'version': mod_version, 'mcversion': mc_version
     }
 
     // copy everything else, thats not the mcmod.info

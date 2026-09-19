@@ -1,0 +1,4 @@
+version_major=1 # major version number is always equal to one
+version_minor=2 # minor version number - these are usually major releases with many new features
+version_patch=3 # patch version number - these are usually minor configuration and bug-related changes
+username=Player # your nickname

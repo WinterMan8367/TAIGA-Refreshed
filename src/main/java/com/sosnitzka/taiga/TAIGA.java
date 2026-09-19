@@ -31,7 +31,7 @@ import static slimeknights.tconstruct.library.utils.HarvestLevels.*;
 public class TAIGA {
 
     public static final String MODID = "taiga";
-    public static final String VERSION = "1.12.2-1.3.3";
+    public static final String VERSION = "@VERSION@";
     public static final String GUIFACTORY = "com.sosnitzka.taiga.TAIGAGuiFactory";
     public static Logger logger;
 
