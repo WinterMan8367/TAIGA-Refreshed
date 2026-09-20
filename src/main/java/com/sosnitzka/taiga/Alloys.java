@@ -33,8 +33,8 @@ public class Alloys {
                 (prometheumFluid, 1), new FluidStack(abyssumFluid, 1));
         registerTinkerAlloy(new FluidStack(solariumFluid, 2), new FluidStack(valyriumFluid, 2), new FluidStack
                 (uruFluid, 2), new FluidStack(nucleumFluid, 1));
-        registerTinkerAlloy(new FluidStack(adamantFluid, 3), new FluidStack(vibraniumFluid, 1), new FluidStack
-                (solariumFluid, 1), new FluidStack(ioxFluid, 3));
+        registerTinkerAlloy(new FluidStack(adamantFluid, 3), new FluidStack(nihiliteFluid, 1), new FluidStack
+                (ioxFluid, 3));
         registerTinkerAlloy(new FluidStack(nihiliteFluid, 1), new FluidStack(vibraniumFluid, 1), new FluidStack
                 (solariumFluid, 1));
         registerTinkerAlloy(new FluidStack(seismumFluid, 4), new FluidStack(TinkerFluids.obsidian, 4), new FluidStack
