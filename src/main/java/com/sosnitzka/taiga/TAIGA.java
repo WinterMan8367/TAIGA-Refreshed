@@ -3,7 +3,6 @@ package com.sosnitzka.taiga;
 import com.google.common.collect.Lists;
 import com.sosnitzka.taiga.net.NetManager;
 import com.sosnitzka.taiga.proxy.CommonProxy;
-import com.sosnitzka.taiga.recipes.CraftingRegistry;
 import com.sosnitzka.taiga.recipes.SmeltingRegistry;
 import com.sosnitzka.taiga.world.WorldGen;
 import net.minecraftforge.fml.common.Mod;
@@ -76,8 +75,7 @@ public class TAIGA {
         Alloys.register(); // Registers alloying recipes
         registerTinkerMaterials(); // Registers materials and associated fluids and stats into tconstruct
 
-        SmeltingRegistry.register(); // Registers smelting recipes
-        CraftingRegistry.register(); // Registers crafting recipes
+        SmeltingRegistry.register(); // Registers smelting recipess
 
         for (MaterialIntegration m : integrateList) {
             m.integrate();
