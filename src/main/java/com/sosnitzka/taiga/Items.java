@@ -15,19 +15,16 @@ import java.util.Arrays;
 import static com.sosnitzka.taiga.util.Utils.*;
 
 public class Items {
-
-    // TODO: add tin, copper, and bronze dust
-
     public static Item tinIngot = new BasicItem("tin_ingot", PREFIX_INGOT);
-    // public static Item tinDust = new BasicItem("tin_dust", PREFIX_DUST);
+    public static Item tinDust = new BasicItem("tin_dust", PREFIX_DUST);
     public static Item tinNugget = new BasicItem("tin_nugget", PREFIX_NUGGET);
 
     public static Item copperIngot = new BasicItem("copper_ingot", PREFIX_INGOT);
-    // public static Item copperDust = new BasicItem("copper_dust", PREFIX_DUST);
+    public static Item copperDust = new BasicItem("copper_dust", PREFIX_DUST);
     public static Item copperNugget = new BasicItem("copper_nugget", PREFIX_NUGGET);
 
     public static Item bronzeIngot = new BasicItem("bronze_ingot", PREFIX_INGOT);
-    // public static Item bronzeDust = new BasicItem("bronze_dust", PREFIX_DUST);
+    public static Item bronzeDust = new BasicItem("bronze_dust", PREFIX_DUST);
     public static Item bronzeNugget = new BasicItem("bronze_nugget", PREFIX_NUGGET);
 
     public static Item ironNugget = new BasicItem("iron_nugget", PREFIX_NUGGET);
