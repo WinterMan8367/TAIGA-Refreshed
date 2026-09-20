@@ -80,6 +80,9 @@ material.obsidiorite.prefix=Обсидиоритн. %s
 material.magma.prefix=Магмов. %s
 material.nitronite.prefix=Нитронитов. %s
 
+tile.tin_block.name=Оловянный блок
+tile.copper_block.name=Медный блок
+tile.bronze_block.name=Бронзовый блок
 tile.basalt_block.name=Базальтовый блок
 tile.dilithium_block.name=Дилитиевый блок
 tile.tiberium_block.name=Тибериевый блок
@@ -122,8 +125,8 @@ tile.nitronite_block.name=Нитронитовый блок
 tile.meteoritecobble_block.name=Метеоритный булыжник
 tile.obsidioritecobble_block.name=Обсидиоритный булыжник
 
-
-
+tile.tin_ore.name=Оловянная руда
+tile.copper_ore.name=Медная руда
 tile.basalt_ore.name=Базальтовая руда
 tile.tiberium_ore.name=Тибериевая руда
 tile.dilithium_ore.name=Дилитиевая руда
@@ -167,7 +170,9 @@ tile.nitronite_ore.name=Нитронитовая руда
 item.dilithium_crystal.name=Дилитиевый кристалл
 item.tiberium_crystal.name=Тибериевый кристалл
 
-
+item.tin_nugget.name=Оловянный самородок
+item.copper_nugget.name=Медный самородок
+item.bronze_nugget.name=Бронзовый самородок
 item.basalt_nugget.name=Базальтовый самородок
 item.dilithium_nugget.name=Дилитиевый самородок
 item.tiberium_nugget.name=Тибериевый самородок
@@ -209,7 +214,9 @@ item.magma_nugget.name=Магмовый самородок
 item.nitronite_nugget.name=Нитронитовый самородок
 item.iron_nugget.name=Железный самородок
 
-
+item.tin_dust.name=Оловянная пыль
+item.copper_dust.name=Медная пыль
+item.bronze_dust.name=Бронзовая пыль
 item.basalt_dust.name=Базальтовая пыль
 item.tiberium_dust.name=Тибериевая пыль
 item.dilithium_dust.name=Дилитиевая пыль
@@ -250,6 +257,9 @@ item.obsidiorite_dust.name=Обсидиоритная пыль
 item.magma_dust.name=Магмовая пыль
 item.nitronite_dust.name=Нитронитовая пыль
 
+item.tin_ingot.name=Оловянный слиток
+item.copper_ingot.name=Медный слиток
+item.bronze_ingot.name=Бронзовый слиток
 item.basalt_ingot.name=Базальтовый слиток
 item.tiberium_ingot.name=Тибериевый слиток
 item.dilithium_ingot.name=Дилитиевый слиток
@@ -329,7 +339,6 @@ fluid.tconstruct.meteorite_fluid.name=Расплавленный метеори�
 fluid.tconstruct.obsidiorite_fluid.name=Расплавленный обсидиорит
 fluid.tconstruct.magma_fluid.name=Жидкая магма
 fluid.tconstruct.nitronite_fluid.name=Расплавленный нитронит
-
 
 modifier.catcher.name=Ловец
 modifier.catcher.desc=§oПоймай их всех!§r\nСлучайным образом лови монстров, сохраняй их... а затем выпускай их!

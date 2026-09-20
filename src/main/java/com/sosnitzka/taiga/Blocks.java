@@ -25,6 +25,8 @@ import static slimeknights.tconstruct.library.utils.HarvestLevels.*;
 public class Blocks {
 
     // blocks and ores spawned via worldgen
+    public static Block tinOre = new BasicBlock("tin_ore", Material.ROCK, 10.0f, 10f, STONE, PREFIX_ORE);
+    public static Block copperOre = new BasicBlock("copper_ore", Material.ROCK, 10.0f, 10f, STONE, PREFIX_ORE);
     public static Block basaltBlock = new BasicBlock("basalt_block", Material.ROCK, 20.0f, 35.0f, IRON, PREFIX_BLOCK);
     public static Block tiberiumOre = new BlockTiberium();
     public static Block auroriumOre = new BasicBlock("aurorium_ore", Material.ROCK, 15.0f, 12f, COBALT, 0.2f,
@@ -46,6 +48,12 @@ public class Blocks {
     public static Block abyssumOre = new BasicBlock("abyssum_ore", Material.ROCK, 15.0f, 35.0f, COBALT, PREFIX_ORE);
 
     // Ore Castsee
+    public static Block tinBlock = new BasicBlock("tin_block", Material.ROCK, 10.0f, 10f, STONE,
+            PREFIX_BLOCK);
+    public static Block copperBlock = new BasicBlock("copper_block", Material.ROCK, 10.0f, 10f, STONE,
+            PREFIX_BLOCK);
+    public static Block bronzeBlock = new BasicBlock("bronze_block", Material.ROCK, 10.0f, 10f, STONE,
+            PREFIX_BLOCK);
     public static Block tiberiumBlock = new BasicBlock("tiberium_block", Material.GLASS, 10.0f, 15f, STONE, 1f,
             PREFIX_BLOCK);
     public static Block auroriumBlock = new BasicBlock("aurorium_block", Material.ROCK, 15.0f, 15f, COBALT,
@@ -97,7 +105,6 @@ public class Blocks {
     public static Block yrdeenBlock = new BasicBlock("yrdeen_block", Material.ROCK, 15.0f, 25f, VALYRIUM, PREFIX_BLOCK);
     public static Block ioxBlock = new BasicBlock("iox_block", Material.ROCK, 20.0f, 25f, DURANITE, PREFIX_BLOCK);
 
-
     public static Block blockMeteoriteCobble = new BlockCobble("meteoritecobble_block", Material.ROCK, 20f, 10f,
             COBALT, 0.075f, PREFIX_BLOCK);
     public static Block blockObsidioriteCobble = new BlockCobble("obsidioritecobble_block", Material.ROCK, 25f, 20f,
@@ -108,14 +115,18 @@ public class Blocks {
             DURANITE, 0.2f, PREFIX_BLOCK, blockObsidioriteCobble.getDefaultState());
 
     // Community
-    public static Block dilithiumOre = new BlockOre("dilithium_ore", Material.GLASS, 18f, 18f, DIAMOND, 0.73f, Items.dilithiumCrystal, 3, 10);
-    public static Block dilithiumBlock = new BasicBlock("dilithium_block", Material.GLASS, 18f, 18f, DIAMOND, 0.73f, PREFIX_BLOCK);
+    public static Block dilithiumOre = new BlockOre("dilithium_ore", Material.GLASS, 18f, 18f, DIAMOND, 0.73f,
+            Items.dilithiumCrystal, 3, 10);
+    public static Block dilithiumBlock = new BasicBlock("dilithium_block", Material.GLASS, 18f, 18f, DIAMOND, 0.73f,
+            PREFIX_BLOCK);
 
     /**
      * Registers all materials' ingots and nuggets <br>
      * Detailed summary: <br>
-     * Gets the ingots declared in the class (fields and reflection) and iterates through them: <br>
-     * Checks that the field is static, registers the field (item), and adds an oreDict entry if needed
+     * Gets the ingots declared in the class (fields and reflection) and iterates
+     * through them: <br>
+     * Checks that the field is static, registers the field (item), and adds an
+     * oreDict entry if needed
      */
     @SubscribeEvent
     public static void register(boolean oreDict) {
@@ -135,8 +146,8 @@ public class Blocks {
                                 String[] nameParts = block.getUnlocalizedName().replace("tile.", "").split("_");
 
                                 if (nameParts.length > 2) {
-                                    oreDictName = Joiner.on("_").join(Arrays.copyOfRange(nameParts, 0, nameParts
-                                            .length - 1));
+                                    oreDictName = Joiner.on("_")
+                                            .join(Arrays.copyOfRange(nameParts, 0, nameParts.length - 1));
                                 } else {
                                     oreDictName = nameParts[0];
                                 }

@@ -5,7 +5,6 @@ import com.sosnitzka.taiga.TAIGA;
 import com.sosnitzka.taiga.util.Generator;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -19,12 +18,11 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.sosnitzka.taiga.Blocks.*;
 import static com.sosnitzka.taiga.TAIGAConfiguration.*;
 
-@SuppressWarnings("unchecked")
 public class WorldGen implements IWorldGenerator {
     private static WorldGen INSTANCE;
-    private final List<Integer> blackList = new ArrayList();
-    private final Map<Integer, Integer> meteorGenStats = new HashMap();
-    private final Map<Integer, Integer> meteorChunkStats = new HashMap();
+    private final List<Integer> blackList = new ArrayList<Integer>();
+    private final Map<Integer, Integer> meteorGenStats = new HashMap<Integer, Integer>();
+    private final Map<Integer, Integer> meteorChunkStats = new HashMap<Integer, Integer>();
 
     public static WorldGen getInstance() {
         if (INSTANCE == null) {
@@ -76,6 +74,10 @@ public class WorldGen implements IWorldGenerator {
                         .MUTATED_DESERT, Biomes.OCEAN, Biomes.DEEP_OCEAN, Biomes.FROZEN_OCEAN, Biomes.BEACH));
         Generator.generateOre(vibraniumOre.getDefaultState(), Blocks.STONE.getDefaultState(), random, x, z, world, 1,
                 15, 0, 128, 1, 5, null);
+        Generator.generateOre(tinOre.getDefaultState(), Blocks.STONE.getDefaultState(), random, x, z,
+                    world, TIN_VAL, 0, 40, 3, 6);
+        Generator.generateOre(copperOre.getDefaultState(), Blocks.STONE.getDefaultState(), random, x, z,
+                    world, COPPER_VAL, 20, 60, 4, 8);
         if (ironGen) {
             Generator.generateOre(Blocks.IRON_ORE.getDefaultState(), Blocks.STONE.getDefaultState(), random, x, z,
                     world, IRON_VAL, 0, 32, 2, 8);
@@ -108,6 +110,10 @@ public class WorldGen implements IWorldGenerator {
                         .MUTATED_DESERT, Biomes.OCEAN, Biomes.DEEP_OCEAN, Biomes.FROZEN_OCEAN, Biomes.BEACH));
         Generator.generateOre(vibraniumOre.getDefaultState(), Blocks.STONE.getDefaultState(), random, x, z, world, 1,
                 15, 0, 128, 1, 5, null);
+        Generator.generateOre(tinOre.getDefaultState(), Blocks.STONE.getDefaultState(), random, x, z,
+                    world, TIN_VAL, 0, 40, 3, 6);
+        Generator.generateOre(copperOre.getDefaultState(), Blocks.STONE.getDefaultState(), random, x, z,
+                    world, COPPER_VAL, 20, 60, 4, 8);
         if (ironGen) {
             Generator.generateOre(Blocks.IRON_ORE.getDefaultState(), Blocks.STONE.getDefaultState(), random, x, z,
                     world, IRON_VAL, 0, 32, 2, 8);
