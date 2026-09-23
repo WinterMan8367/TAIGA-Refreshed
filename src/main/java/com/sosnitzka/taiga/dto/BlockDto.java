@@ -13,5 +13,4 @@ public class BlockDto {
     private float resistance;
     private int harvest;
     private float lightLevel;
-    private boolean includeOreDict;
 }
