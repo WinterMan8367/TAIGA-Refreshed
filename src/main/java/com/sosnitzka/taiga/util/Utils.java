@@ -26,6 +26,7 @@ public class Utils {
     public static String PREFIX_BLOCK = "block";
     public static String PREFIX_DUST = "dust";
     public static String PREFIX_CRYSTAL = "crystal";
+    public static String PREFIX_FLUID = "fluid";
 
     /**
      * Registers the fluid and its bucket item
