@@ -4,7 +4,9 @@ import com.sosnitzka.taiga.Items;
 import com.sosnitzka.taiga.generic.BasicBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
@@ -54,6 +56,13 @@ public class BlockTiberium extends BasicBlock {
 
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+        if (
+            state.getBlock().canSilkHarvest(worldIn, pos, worldIn.getBlockState(pos), player)
+            && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) > 0
+        ) {
+            return;
+        }
+
         if (random.nextFloat() < 0.1) {
             if (!worldIn.isRemote) {
                 worldIn.newExplosion(null, pos.getX(), pos.getY() + 1 / 16f, pos.getZ(), 1.5f, true, true);
