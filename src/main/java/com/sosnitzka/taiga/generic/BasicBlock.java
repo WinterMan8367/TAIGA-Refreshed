@@ -6,8 +6,15 @@ import net.minecraft.block.material.Material;
 public class BasicBlock extends Block {
     private final String oreDictPrefix;
 
-    public BasicBlock(String name, Material material, float hardness, float resistance, int harvest, float
-            lightLevel, String oreDictPrefix) {
+    public BasicBlock(
+        String name,
+        Material material,
+        float hardness,
+        float resistance,
+        int harvest,
+        float lightLevel,
+        String oreDictPrefix
+    ) {
         super(material);
         setUnlocalizedName(name);
         setRegistryName(name);
