@@ -3,6 +3,7 @@ package com.sosnitzka.taiga.generic;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
@@ -15,8 +16,7 @@ import java.util.Random;
 import static slimeknights.tconstruct.TConstruct.random;
 
 public class BlockOre extends BasicBlock {
-    private final Item dropItem;
-    private final int itemAmount;
+    private final ItemStack dropItem;
     private final int xpAmount;
 
     public BlockOre(
@@ -27,13 +27,11 @@ public class BlockOre extends BasicBlock {
         int harvest,
         float lightLevel,
         String oreDictPrefix,
-        Item item,
-        int amount,
+        ItemStack item,
         int xp
     ) {
         super(name, material, hardness, resistance, harvest, lightLevel, oreDictPrefix);
         this.dropItem = item;
-        this.itemAmount = amount;
         this.xpAmount = xp;
     }
 
@@ -50,11 +48,11 @@ public class BlockOre extends BasicBlock {
     @Override
     @ParametersAreNonnullByDefault
     public int quantityDropped(IBlockState state, int fortune, Random random) {
-        if (itemAmount <= 0 || dropItem == null) {
+        if (dropItem == null) {
             return super.quantityDropped(state, fortune, random);
         }
 
-        return (random.nextInt(itemAmount + fortune) + 1);
+        return (random.nextInt(dropItem.getCount() + fortune) + 1);
     }
 
     @Override
@@ -64,7 +62,7 @@ public class BlockOre extends BasicBlock {
             return super.getItemDropped(state, rand, fortune);
         }
 
-        return dropItem;
+        return dropItem.getItem();
     }
 
     @Override
