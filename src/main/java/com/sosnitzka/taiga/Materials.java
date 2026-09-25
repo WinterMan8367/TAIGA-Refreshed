@@ -2,6 +2,7 @@ package com.sosnitzka.taiga;
 
 import com.sosnitzka.taiga.dto.BlockDto;
 import com.sosnitzka.taiga.dto.FluidDto;
+import com.sosnitzka.taiga.dto.MaterialDto;
 import com.sosnitzka.taiga.dto.OreDto;
 import com.sosnitzka.taiga.generic.BasicBlock;
 import com.sosnitzka.taiga.generic.BasicItem;
@@ -15,11 +16,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
+import slimeknights.tconstruct.library.materials.MaterialTypes;
 
 import java.util.HashSet;
 
@@ -30,7 +33,7 @@ public class Materials {
 
     private static HashSet<UtilityMaterial> materials = new HashSet<>();
 
-    public static void append(UtilityMaterial material) {
+    public static void add(UtilityMaterial material) {
         if (material != null) {
             materials.add(material);
         }
@@ -52,17 +55,23 @@ public class Materials {
 
     public static UtilityMaterial test = new UtilityMaterial(
         "test",
+        0x0,
         BlockDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build(),
         OreDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build()
     );
 
-    public static UtilityMaterial doubleTest = new UtilityMaterial(
-        "doubleTest",
+    public static UtilityMaterial doubletest = new UtilityMaterial(
+        "doubletest",
+        0x00FF00,
         BlockDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build(),
         OreDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build(),
-        FluidDto.builder().color(0x0).temperature(550).luminosity(10).viscosity(6000).build(),
+        MaterialDto.builder().isCraftable(true).isCastable(true).build(),
+        FluidDto.builder().color(0xFF0000).temperature(550).luminosity(10).viscosity(6000).build(),
         true
-    );
+    )
+        .appendTraits(MaterialTraits.instable, MaterialTraits.arcane)
+        .appendTraitsByType(MaterialTypes.HEAD, MaterialTraits.mutate)
+        .appendTraitsByType(MaterialTypes.HANDLE, MaterialTraits.naturebound);
 
     public static void manualRegisterFluids() {
         logger.warn("MANUAL REGISTER FLUIDS");
@@ -71,12 +80,12 @@ public class Materials {
                 Fluid fluid = material.getFluid();
                 registerFluid(fluid);
                 material.createMoltenFluidIfNull();
-                TAIGA.proxy.registerFluidModels(fluid);
                 logger.info("Material: <" + material.getName() + ">. [FLUID] registered");
             }
-        }   
+        }
     }
 
+    @SuppressWarnings("null")
     @SubscribeEvent
     public static void registerBlocks(Register<Block> event) {
         logger.warn("EVENT REGISTER BLOCKS");
@@ -88,12 +97,10 @@ public class Materials {
                 logger.info("Material: <" + material.getName() + ">. [ORE] registered");
             }
 
-            if (material.hasBlock()) {
-                Block block = material.getBlock();
-                block.setCreativeTab(CreativeTab.tabTaigaBlock);
-                event.getRegistry().register(block);
-                logger.info("Material: <" + material.getName() + ">. [BLOCK] registered");
-            }
+            Block block = material.getBlock();
+            block.setCreativeTab(CreativeTab.tabTaigaBlock);
+            event.getRegistry().register(block);
+            logger.info("Material: <" + material.getName() + ">. [BLOCK] registered");
 
             if (material.hasFluid()) {
                 Block moltenFluid = material.getMoltenFluid();
@@ -103,6 +110,7 @@ public class Materials {
         }
     }
 
+    @SuppressWarnings("null")
     @SubscribeEvent
     public static void registerItems(Register<Item> event) {
         logger.warn("EVENT REGISTER ITEMS");
@@ -130,7 +138,7 @@ public class Materials {
                 crystal.setCreativeTab(CreativeTab.tabTaigaItem);
                 event.getRegistry().register(crystal);
                 OreDictionary.registerOre(crystal.getOreDictPrefix() + StringUtils.capitalize(material.getName().toLowerCase()), crystal);
-                logger.info("Material: <" + material.getName() + ">. [CRYSTALs] registered");
+                logger.info("Material: <" + material.getName() + ">. [CRYSTAL] registered");
             }
 
             if (material.hasFluid()) {
@@ -148,13 +156,20 @@ public class Materials {
                 logger.info("Material: <" + material.getName() + ">. [ORE as ITEM] registered");
             }
 
-            if (material.hasBlock()) {
-                BasicBlock block = material.getBlock();
-                event.getRegistry().register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
-                if (block.isOreDict()) {
-                    OreDictionary.registerOre(block.getOreDictPrefix() + StringUtils.capitalize(material.getName().toLowerCase()), block);
-                }
-                logger.info("Material: <" + material.getName() + ">. [BLOCK as ITEM] registered");
+            BasicBlock block = material.getBlock();
+            event.getRegistry().register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+            if (block.isOreDict()) {
+                OreDictionary.registerOre(block.getOreDictPrefix() + StringUtils.capitalize(material.getName().toLowerCase()), block);
+            }
+            logger.info("Material: <" + material.getName() + ">. [BLOCK as ITEM] registered");
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerModels(ModelRegistryEvent event) {
+        for (UtilityMaterial material : Materials.getAll()) {
+            if (material.hasFluid()) {
+                TAIGA.proxy.registerFluidModels(material.getFluid());
             }
         }
     }

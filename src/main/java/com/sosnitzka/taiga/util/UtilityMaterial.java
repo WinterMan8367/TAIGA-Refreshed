@@ -14,66 +14,95 @@ import com.sosnitzka.taiga.Materials;
 import com.sosnitzka.taiga.TAIGA;
 import com.sosnitzka.taiga.dto.BlockDto;
 import com.sosnitzka.taiga.dto.FluidDto;
+import com.sosnitzka.taiga.dto.MaterialDto;
 import com.sosnitzka.taiga.dto.OreDto;
 import com.sosnitzka.taiga.generic.BasicBlock;
 import com.sosnitzka.taiga.generic.BasicItem;
 import com.sosnitzka.taiga.generic.BasicTinkerFluid;
 import com.sosnitzka.taiga.generic.BlockOre;
 
+import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.smeltery.block.BlockMolten;
 
 public class UtilityMaterial {
-    private String name;
-    private BasicItem ingot;
-    private BasicItem dust;
-    private BasicItem nugget;
+    private final String name;
+    private final BasicItem ingot;
+    private final BasicItem dust;
+    private final BasicItem nugget;
+    private final BasicBlock block;
+    private final Material material;
+    
     private @Nullable BasicItem crystal;
     private @Nullable BlockOre ore;
-    private BasicBlock block;
     private @Nullable BasicTinkerFluid fluid;
     private @Nullable BlockMolten moltenFluid;
+    private @Nullable MaterialDto materialStats;
 
     public UtilityMaterial(
         String name,
+        int textColor,
         BlockDto blockProps,
         @Nullable OreDto oreProps,
+        @Nullable MaterialDto materialProps,
         @Nullable FluidDto fluidProps,
         boolean hasCrystal
     ) {
+        if (name == null || name.length() == 0) {
+            throw new NullPointerException("Material name must not be null or zero-length");
+        }
+
+        if (blockProps == null) {
+            throw new NullPointerException("Block properties must not be null");
+        }
+
         this.name = name;
         this.ingot = new BasicItem(name + "_" + PREFIX_INGOT, PREFIX_INGOT);
         this.dust = new BasicItem(name + "_" + PREFIX_DUST, PREFIX_DUST);
         this.nugget = new BasicItem(name + "_" + PREFIX_NUGGET, PREFIX_NUGGET);
+        this.material = new Material(name, textColor);
 
-        this.setBlockIfNull(blockProps);
+        this.materialStats = materialProps;
+
         this.setOreIfNull(oreProps);
+
+        this.block = new BasicBlock(
+            name + "_" + PREFIX_BLOCK,
+            blockProps.getMaterial(),
+            blockProps.getHardness(),
+            blockProps.getResistance(),
+            blockProps.getHarvest(),
+            blockProps.getLightLevel(),
+            PREFIX_BLOCK
+        );
+
         this.setFluidIfNull(fluidProps);
 
         if (hasCrystal) {
             this.createCrystalIfNull();
         }
 
-        Materials.append(this);
+        Materials.add(this);
     }
 
-    public UtilityMaterial(String name, BlockDto blockProps) {
-        this(name, blockProps, null, null, false);
+    public UtilityMaterial(String name, int textColor, BlockDto blockProps) {
+        this(name, textColor, blockProps, false);
     }
 
-    public UtilityMaterial(String name, BlockDto blockProps, boolean hasCrystal) {
-        this(name, blockProps, null, null, hasCrystal);
+    public UtilityMaterial(String name, int textColor, BlockDto blockProps, boolean hasCrystal) {
+        this(name, textColor, blockProps, null, null, null, hasCrystal);
     }
 
-    public UtilityMaterial(String name, BlockDto blockProps, OreDto oreProps) {
-        this(name, blockProps, oreProps, null, false);
+    public UtilityMaterial(String name, int textColor, BlockDto blockProps, OreDto oreProps) {
+        this(name, textColor, blockProps, oreProps, null, null);
     }
 
-    public UtilityMaterial(String name, BlockDto blockProps, FluidDto fluidProps) {
-        this(name, blockProps, null, fluidProps, false);
+    public UtilityMaterial(String name, int textColor, BlockDto blockProps, MaterialDto materialProps, FluidDto fluidProps) {
+        this(name, textColor, blockProps, null, materialProps, fluidProps);
     }
 
-    public UtilityMaterial(String name, BlockDto blockProps, OreDto oreProps, FluidDto fluidProps) {
-        this(name, blockProps, oreProps, fluidProps, false);
+    public UtilityMaterial(String name, int textColor, BlockDto blockProps, OreDto oreProps, MaterialDto materialProps, FluidDto fluidProps) {
+        this(name, textColor, blockProps, oreProps, materialProps, fluidProps, false);
     }
 
     public String getName() {
@@ -90,6 +119,14 @@ public class UtilityMaterial {
 
     public BasicItem getNugget() {
         return this.nugget;
+    }
+
+    public BasicBlock getBlock() {
+        return this.block;
+    }
+
+    public Material getTinkerMaterial() {
+        return this.material;
     }
 
     public boolean hasFluid() {
@@ -122,14 +159,15 @@ public class UtilityMaterial {
         return this.moltenFluid;
     }
 
+    @SuppressWarnings("null")
     public UtilityMaterial createMoltenFluidIfNull() {
         if (this.hasFluid() && !this.hasMoltenFluid()) {
             String moltenName = "molten_" + this.getFluid().getName();
+            TAIGA.logger.info("FLUID CHECK NAME: " + moltenName);
 
             this.moltenFluid = new BlockMolten(fluid);
-            this.moltenFluid
-                .setUnlocalizedName(moltenName)
-                .setRegistryName(TAIGA.MODID, moltenName);
+            this.moltenFluid.setUnlocalizedName(moltenName);
+            this.moltenFluid.setRegistryName(TAIGA.MODID, moltenName);
         }
 
         return this;
@@ -146,30 +184,6 @@ public class UtilityMaterial {
     public UtilityMaterial createCrystalIfNull() {
         if (!this.hasCrystal()) {
             this.crystal = new BasicItem(name + "_" + PREFIX_CRYSTAL, PREFIX_CRYSTAL);
-        }
-
-        return this;
-    }
-
-    public boolean hasBlock() {
-        return this.block != null;
-    }
-
-    public BasicBlock getBlock() {
-        return this.block;
-    }
-
-    public UtilityMaterial setBlockIfNull(BlockDto blockProps) {
-        if (blockProps != null && !this.hasBlock()) {
-            this.block = new BasicBlock(
-                name + "_" + PREFIX_BLOCK,
-                blockProps.getMaterial(),
-                blockProps.getHardness(),
-                blockProps.getResistance(),
-                blockProps.getHarvest(),
-                blockProps.getLightLevel(),
-                PREFIX_BLOCK
-            );
         }
 
         return this;
@@ -198,6 +212,30 @@ public class UtilityMaterial {
             );
         }
 
+        return this;
+    }
+
+    public boolean hasMaterialStats() {
+        return this.materialStats != null;
+    }
+
+    public MaterialDto getMaterialStats() {
+        return this.materialStats;
+    }
+
+    public UtilityMaterial appendTraits(AbstractTrait ...traits) {
+        for (AbstractTrait trait : traits) {
+            this.material.addTrait(trait);
+        }
+
+        return this;
+    }
+
+    public UtilityMaterial appendTraitsByType(String type, AbstractTrait ...traits) {
+        for (AbstractTrait trait : traits) {
+            this.material.addTrait(trait, type);
+        }
+        
         return this;
     }
 }

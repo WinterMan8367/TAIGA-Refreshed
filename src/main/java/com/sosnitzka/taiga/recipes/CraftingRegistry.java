@@ -2,7 +2,10 @@ package com.sosnitzka.taiga.recipes;
 
 import com.sosnitzka.taiga.Blocks;
 import com.sosnitzka.taiga.Items;
+import com.sosnitzka.taiga.Materials;
 import com.sosnitzka.taiga.TAIGA;
+import com.sosnitzka.taiga.util.UtilityMaterial;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -19,6 +22,10 @@ public class CraftingRegistry {
     @SuppressWarnings("null")
     @SubscribeEvent
     public static void registerRecipes(Register<IRecipe> event) {
+        for (UtilityMaterial material : Materials.getAll()) {
+            convertion(event, Item.getItemFromBlock(material.getBlock()), material.getIngot(), material.getNugget());
+        }
+
         convertion(event, Item.getItemFromBlock(Blocks.tinBlock), Items.tinIngot, Items.tinNugget);
         convertion(event, Item.getItemFromBlock(Blocks.copperBlock), Items.copperIngot, Items.copperNugget);
         convertion(event, Item.getItemFromBlock(Blocks.bronzeBlock), Items.bronzeIngot, Items.bronzeNugget);

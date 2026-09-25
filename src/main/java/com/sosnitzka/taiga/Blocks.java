@@ -9,6 +9,7 @@ import com.sosnitzka.taiga.generic.BlockOre;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
@@ -116,7 +117,7 @@ public class Blocks {
 
     // Community
     public static Block dilithiumOre = new BlockOre("dilithium_ore", Material.GLASS, 18f, 18f, DIAMOND, 0.73f,
-            Items.dilithiumCrystal, 3, 10);
+            PREFIX_ORE, new ItemStack(Items.dilithiumCrystal, 3), 10);
     public static Block dilithiumBlock = new BasicBlock("dilithium_block", Material.GLASS, 18f, 18f, DIAMOND, 0.73f,
             PREFIX_BLOCK);
 

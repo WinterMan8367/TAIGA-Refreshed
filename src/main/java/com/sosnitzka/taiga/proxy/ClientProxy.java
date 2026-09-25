@@ -2,9 +2,12 @@ package com.sosnitzka.taiga.proxy;
 
 import com.sosnitzka.taiga.Blocks;
 import com.sosnitzka.taiga.Items;
+import com.sosnitzka.taiga.Materials;
 import com.sosnitzka.taiga.TAIGA;
 import com.sosnitzka.taiga.TAIGAConfiguration;
 import com.sosnitzka.taiga.book.ContentOre;
+import com.sosnitzka.taiga.util.UtilityMaterial;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -77,6 +80,15 @@ public class ClientProxy extends CommonProxy {
                     e.printStackTrace();
                 }
             }
+        }
+
+        for (UtilityMaterial material : Materials.getAll()) {
+            registerItemModel(material.getIngot());
+            registerItemModel(material.getDust());
+            registerItemModel(material.getNugget());
+            if (material.hasCrystal()) registerItemModel(material.getCrystal());
+            if (material.hasOre()) registerBlockModel(material.getOre());
+            registerBlockModel(material.getBlock());
         }
     }
 

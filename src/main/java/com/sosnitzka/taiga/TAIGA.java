@@ -1,9 +1,11 @@
 package com.sosnitzka.taiga;
 
 import com.google.common.collect.Lists;
+import com.sosnitzka.taiga.dto.MaterialDto;
 import com.sosnitzka.taiga.net.NetManager;
 import com.sosnitzka.taiga.proxy.CommonProxy;
 import com.sosnitzka.taiga.recipes.SmeltingRegistry;
+import com.sosnitzka.taiga.util.UtilityMaterial;
 import com.sosnitzka.taiga.world.WorldGen;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -13,6 +15,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 import slimeknights.tconstruct.library.MaterialIntegration;
 import slimeknights.tconstruct.library.materials.BowMaterialStats;
@@ -98,8 +102,30 @@ public class TAIGA {
      * Registers materials and associated fluids and stats into tconstruct
      */
     private void registerTinkerMaterials() {
+        for (UtilityMaterial material : Materials.getAll()) {
+            if (!material.hasMaterialStats() || !material.hasFluid()) {
+                continue;
+            }
+
+            MaterialDto materialStats = material.getMaterialStats();
+
+            integrateMaterial(
+                StringUtils.capitalize(material.getName()),
+                material.getTinkerMaterial(),
+                material.getFluid(),
+                materialStats.getHeadStats().durability,
+                materialStats.getHeadStats().miningspeed, 
+                materialStats.getHeadStats().attack,
+                materialStats.getHandleStats().modifier,
+                materialStats.getHandleStats().durability,
+                materialStats.getExtraDurability(),
+                materialStats.getHeadStats().harvestLevel,
+                materialStats.getBowStats()
+            );
+        }
+
         BowMaterialStats shitty = new BowMaterialStats(0.2f, 0.4f, -1f);
-//
+
         integrateMaterial("Tiberium", tiberium, tiberiumFluid, 80, 3.3f, 4f, 0.7f, -25, 50, DIAMOND, shitty, true, false);
         integrateMaterial("Aurorium", aurorium, auroriumFluid, 750, 3.6f, 3.78f, 0.77f, 25, 130, COBALT, 0.45f, 1f, 1);
         integrateMaterial("Prometheum", prometheum, prometheumFluid, 844, 4.75f, 6.6f, 1.2f, 25, 50, DURANITE, 0.2f, 0.6f, 3);

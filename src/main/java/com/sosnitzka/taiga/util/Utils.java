@@ -2,8 +2,10 @@ package com.sosnitzka.taiga.util;
 
 
 import com.sosnitzka.taiga.Items;
+import com.sosnitzka.taiga.Materials;
 import com.sosnitzka.taiga.TAIGA;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -76,7 +78,9 @@ public class Utils {
             TinkerRegistry.addMaterialStats(material, new ExtraMaterialStats(extra));
             TinkerRegistry.addMaterialStats(material, bowstats);
 
-            Item item = null;
+            Item item = ItemStack.EMPTY.getItem();
+
+            // TODO: legacy code, delete
             Field[] items = Items.class.getDeclaredFields();
             for (Field i : items) {
                 if (i.getName().equals(StringUtils.uncapitalize(oreSuffix) + "Ingot")) {
@@ -88,6 +92,12 @@ public class Utils {
                     }
                     item = r;
                 }
+            }
+            //
+
+            UtilityMaterial utility = Materials.get(material.getIdentifier());
+            if (utility != null) {
+                item = utility.getIngot();
             }
 
             material.setFluid(fluid).setCraftable(craft).setCastable(cast).addItem(item, 1, Material.VALUE_Ingot);
