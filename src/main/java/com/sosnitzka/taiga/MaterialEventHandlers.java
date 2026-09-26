@@ -27,7 +27,6 @@ public class MaterialEventHandlers {
                 Fluid fluid = material.getFluid();
                 registerFluid(fluid);
                 material.createMoltenFluid();
-                TAIGA.logger.info("Material: <" + material.getName() + ">. [FLUID] registered");
             }
         }
     }

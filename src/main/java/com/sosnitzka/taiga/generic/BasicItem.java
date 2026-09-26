@@ -6,6 +6,7 @@ import com.sosnitzka.taiga.CreativeTab;
 
 import net.minecraft.item.Item;
 
+// TODO: rename to BasicOreDictItem or different
 /**
  * A "wrapper" for Item that makes construction and manipulation easier
  */
@@ -14,15 +15,15 @@ public class BasicItem extends Item {
     private final String oreDictPrefix;
 
     public BasicItem(String name, String oreDictPrefix) {
-        setUnlocalizedName(name);
-        setRegistryName(name);
+        setUnlocalizedName(name + "_" + oreDictPrefix);
+        setRegistryName(name + "_" + oreDictPrefix);
         setCreativeTab(CreativeTab.tabTaigaItem);
         this.name = name;
         this.oreDictPrefix = oreDictPrefix;
     }
 
     public boolean isOreDict() {
-        return this.oreDictPrefix != null;
+        return oreDictPrefix != null;
     }
 
     public String getOreDictPrefix() {
