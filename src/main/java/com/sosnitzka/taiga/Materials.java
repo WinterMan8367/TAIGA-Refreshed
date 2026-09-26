@@ -5,30 +5,16 @@ import com.sosnitzka.taiga.dto.FluidDto;
 import com.sosnitzka.taiga.dto.MaterialDto;
 import com.sosnitzka.taiga.dto.OreDto;
 import com.sosnitzka.taiga.generic.BasicBlock;
-import com.sosnitzka.taiga.generic.BasicItem;
 import com.sosnitzka.taiga.generic.BlockOre;
 import com.sosnitzka.taiga.util.UtilityMaterial;
-import static com.sosnitzka.taiga.TAIGA.logger;
-import static com.sosnitzka.taiga.util.Utils.registerFluid;
-import static slimeknights.tconstruct.library.utils.HarvestLevels.*;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.event.RegistryEvent.Register;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.oredict.OreDictionary;
+
+import static slimeknights.tconstruct.library.utils.HarvestLevels.*;
 import slimeknights.tconstruct.library.materials.MaterialTypes;
 
 import java.util.HashSet;
 
-import org.apache.commons.lang3.StringUtils;
-
-@Mod.EventBusSubscriber(modid = TAIGA.MODID)
 public class Materials {
 
     private static HashSet<UtilityMaterial> materials = new HashSet<>();
@@ -53,124 +39,45 @@ public class Materials {
         return materials;
     }
 
+    public static HashSet<BlockOre> getOres() {
+        HashSet<BlockOre> ores = new HashSet<>();
+
+        for (UtilityMaterial material : materials) {
+            if (material.hasOre()) {
+                ores.add(material.getOre());
+            }
+        }
+
+        return ores;
+    }
+
+    public static HashSet<BasicBlock> getBlocks() {
+        HashSet<BasicBlock> blocks = new HashSet<>();
+
+        for (UtilityMaterial material : materials) {
+            blocks.add(material.getBlock());
+        }
+
+        return blocks;
+    } 
+
     public static UtilityMaterial test = new UtilityMaterial(
         "test",
         0x0,
-        BlockDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build(),
-        OreDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build()
-    );
+        BlockDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build()
+    )
+        .ore(OreDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build());
 
     public static UtilityMaterial doubletest = new UtilityMaterial(
         "doubletest",
         0x00FF00,
-        BlockDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build(),
-        OreDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build(),
-        MaterialDto.builder().isCraftable(true).isCastable(true).build(),
-        FluidDto.builder().color(0xFF0000).temperature(550).luminosity(10).viscosity(6000).build(),
-        true
+        BlockDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build()
     )
+        .crystal()
+        .ore(OreDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build())
+        .fluid(FluidDto.builder().color(0xFF0000).temperature(550).luminosity(10).viscosity(6000).build())
+        .material(MaterialDto.builder().isCraftable(true).isCastable(true).build())
         .appendTraits(MaterialTraits.instable, MaterialTraits.arcane)
-        .appendTraitsByType(MaterialTypes.HEAD, MaterialTraits.mutate)
-        .appendTraitsByType(MaterialTypes.HANDLE, MaterialTraits.naturebound);
-
-    public static void manualRegisterFluids() {
-        logger.warn("MANUAL REGISTER FLUIDS");
-        for (UtilityMaterial material : materials) {
-            if (material.hasFluid()) {
-                Fluid fluid = material.getFluid();
-                registerFluid(fluid);
-                material.createMoltenFluidIfNull();
-                logger.info("Material: <" + material.getName() + ">. [FLUID] registered");
-            }
-        }
-    }
-
-    @SuppressWarnings("null")
-    @SubscribeEvent
-    public static void registerBlocks(Register<Block> event) {
-        logger.warn("EVENT REGISTER BLOCKS");
-        for (UtilityMaterial material : materials) {
-            if (material.hasOre()) {
-                Block ore = material.getOre();
-                ore.setCreativeTab(CreativeTab.tabTaigaBlock);
-                event.getRegistry().register(ore);
-                logger.info("Material: <" + material.getName() + ">. [ORE] registered");
-            }
-
-            Block block = material.getBlock();
-            block.setCreativeTab(CreativeTab.tabTaigaBlock);
-            event.getRegistry().register(block);
-            logger.info("Material: <" + material.getName() + ">. [BLOCK] registered");
-
-            if (material.hasFluid()) {
-                Block moltenFluid = material.getMoltenFluid();
-                event.getRegistry().register(moltenFluid);
-                logger.info("Material: <" + material.getName() + ">. [MOLTEN FLUID] registered");
-            }
-        }
-    }
-
-    @SuppressWarnings("null")
-    @SubscribeEvent
-    public static void registerItems(Register<Item> event) {
-        logger.warn("EVENT REGISTER ITEMS");
-        for (UtilityMaterial material : materials) {
-            BasicItem ingot = material.getIngot();
-            ingot.setCreativeTab(CreativeTab.tabTaigaItem);
-            event.getRegistry().register(ingot);
-            OreDictionary.registerOre(ingot.getOreDictPrefix() + StringUtils.capitalize(material.getName().toLowerCase()), ingot);
-            logger.info("Material: <" + material.getName() + ">. [INGOT] registered");
-
-            BasicItem dust = material.getDust();
-            dust.setCreativeTab(CreativeTab.tabTaigaItem);
-            event.getRegistry().register(dust);
-            OreDictionary.registerOre(dust.getOreDictPrefix() + StringUtils.capitalize(material.getName().toLowerCase()), dust);
-            logger.info("Material: <" + material.getName() + ">. [DUST] registered");
-
-            BasicItem nugget = material.getNugget();
-            nugget.setCreativeTab(CreativeTab.tabTaigaItem);
-            event.getRegistry().register(nugget);
-            OreDictionary.registerOre(nugget.getOreDictPrefix() + StringUtils.capitalize(material.getName().toLowerCase()), nugget);
-            logger.info("Material: <" + material.getName() + ">. [NUGGET] registered");
-
-            if (material.hasCrystal()) {
-                BasicItem crystal = material.getCrystal();
-                crystal.setCreativeTab(CreativeTab.tabTaigaItem);
-                event.getRegistry().register(crystal);
-                OreDictionary.registerOre(crystal.getOreDictPrefix() + StringUtils.capitalize(material.getName().toLowerCase()), crystal);
-                logger.info("Material: <" + material.getName() + ">. [CRYSTAL] registered");
-            }
-
-            if (material.hasFluid()) {
-                Block moltenFluid = material.getMoltenFluid();
-                event.getRegistry().register(new ItemBlock(moltenFluid).setRegistryName(moltenFluid.getRegistryName()));
-                logger.info("Material: <" + material.getName() + ">. [MOLTEN FLUID as ITEM] registered");
-            }
-
-            if (material.hasOre()) {
-                BlockOre ore = material.getOre();
-                event.getRegistry().register(new ItemBlock(ore).setRegistryName(ore.getRegistryName()));
-                if (ore.isOreDict()) {
-                    OreDictionary.registerOre(ore.getOreDictPrefix() + StringUtils.capitalize(material.getName().toLowerCase()), ore);
-                }
-                logger.info("Material: <" + material.getName() + ">. [ORE as ITEM] registered");
-            }
-
-            BasicBlock block = material.getBlock();
-            event.getRegistry().register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
-            if (block.isOreDict()) {
-                OreDictionary.registerOre(block.getOreDictPrefix() + StringUtils.capitalize(material.getName().toLowerCase()), block);
-            }
-            logger.info("Material: <" + material.getName() + ">. [BLOCK as ITEM] registered");
-        }
-    }
-
-    @SubscribeEvent
-    public static void registerModels(ModelRegistryEvent event) {
-        for (UtilityMaterial material : Materials.getAll()) {
-            if (material.hasFluid()) {
-                TAIGA.proxy.registerFluidModels(material.getFluid());
-            }
-        }
-    }
+        .appendTraits(MaterialTypes.HEAD, MaterialTraits.mutate)
+        .appendTraits(MaterialTypes.HANDLE, MaterialTraits.naturebound);
 }

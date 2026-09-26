@@ -1,9 +1,14 @@
 package com.sosnitzka.taiga.generic;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.sosnitzka.taiga.CreativeTab;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 public class BasicBlock extends Block {
+    private final String name;
     private final String oreDictPrefix;
 
     public BasicBlock(
@@ -22,6 +27,8 @@ public class BasicBlock extends Block {
         setResistance(resistance);
         setHarvestLevel("pickaxe", harvest);
         setLightLevel(lightLevel);
+        setCreativeTab(CreativeTab.tabTaigaBlock);
+        this.name = name;
         this.oreDictPrefix = oreDictPrefix;
     }
 
@@ -44,5 +51,9 @@ public class BasicBlock extends Block {
 
     public String getOreDictPrefix() {
         return this.oreDictPrefix;
+    }
+
+    public String getOreDict() {
+        return oreDictPrefix + StringUtils.capitalize(name.toLowerCase());
     }
 }

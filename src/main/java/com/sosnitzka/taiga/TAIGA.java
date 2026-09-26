@@ -48,7 +48,7 @@ public class TAIGA {
     public void preInit(FMLPreInitializationEvent e) {
         logger = e.getModLog();
 
-        Materials.manualRegisterFluids();
+        MaterialEventHandlers.manualRegisterFluids();
         Fluids.register();
         Blocks.register(false);
         Blocks.registerItems();
