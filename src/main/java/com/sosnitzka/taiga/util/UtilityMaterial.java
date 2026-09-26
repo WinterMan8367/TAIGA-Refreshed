@@ -22,6 +22,8 @@ import com.sosnitzka.taiga.generic.BasicTinkerFluid;
 import com.sosnitzka.taiga.generic.BlockOre;
 
 import lombok.Getter;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.smeltery.block.BlockMolten;
@@ -75,6 +77,27 @@ public class UtilityMaterial {
 
     public UtilityMaterial ore(@Nullable OreDto oreProps) {
         if (oreProps != null && !hasOre()) {
+            Item item = null;
+
+            if (oreProps.getDropItem() != null) {
+                item = oreProps.getDropItem();
+            } else if (oreProps.getInternalItem() != null) {
+                switch (oreProps.getInternalItem()) {
+                    case INGOT:
+                        item = ingot;
+                    case DUST:
+                        item = dust;
+                    case NUGGET:
+                        item = nugget;
+                    case CRYSTAL:
+                        if (hasCrystal()) {
+                            item = crystal;
+                        }
+                }
+            }
+
+            ItemStack itemStack = item != null ? new ItemStack(item, oreProps.getCount()) : null;
+
             ore = new BlockOre(
                 name + "_" + PREFIX_ORE,
                 oreProps.getMaterial(),
@@ -83,8 +106,10 @@ public class UtilityMaterial {
                 oreProps.getHarvest(),
                 oreProps.getLightLevel(),
                 PREFIX_ORE,
-                oreProps.getDropItem(),
-                oreProps.getXpAmount()
+                itemStack,
+                oreProps.getXpAmount(),
+                oreProps.getExplosionChance(),
+                oreProps.getExplodableChance()
             );
         }
 
@@ -121,6 +146,22 @@ public class UtilityMaterial {
         return this;
     }
 
+    public UtilityMaterial traits(AbstractTrait ...traits) {
+        for (AbstractTrait trait : traits) {
+            tinkerMaterial.addTrait(trait);
+        }
+
+        return this;
+    }
+
+    public UtilityMaterial traits(String type, AbstractTrait ...traits) {
+        for (AbstractTrait trait : traits) {
+            tinkerMaterial.addTrait(trait, type);
+        }
+        
+        return this;
+    }
+
     public boolean hasFluid() {
         return fluid != null;
     }
@@ -152,21 +193,5 @@ public class UtilityMaterial {
         moltenFluid = new BlockMolten(fluid);
         moltenFluid.setUnlocalizedName(moltenName);
         moltenFluid.setRegistryName(TAIGA.MODID, moltenName);
-    }
-
-    public UtilityMaterial appendTraits(AbstractTrait ...traits) {
-        for (AbstractTrait trait : traits) {
-            tinkerMaterial.addTrait(trait);
-        }
-
-        return this;
-    }
-
-    public UtilityMaterial appendTraits(String type, AbstractTrait ...traits) {
-        for (AbstractTrait trait : traits) {
-            tinkerMaterial.addTrait(trait, type);
-        }
-        
-        return this;
     }
 }

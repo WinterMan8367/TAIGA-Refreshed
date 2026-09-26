@@ -4,6 +4,7 @@ import com.sosnitzka.taiga.dto.BlockDto;
 import com.sosnitzka.taiga.dto.FluidDto;
 import com.sosnitzka.taiga.dto.MaterialDto;
 import com.sosnitzka.taiga.dto.OreDto;
+import com.sosnitzka.taiga.dto.OreDto.InternalItem;
 import com.sosnitzka.taiga.generic.BasicBlock;
 import com.sosnitzka.taiga.generic.BlockOre;
 import com.sosnitzka.taiga.util.UtilityMaterial;
@@ -59,25 +60,25 @@ public class Materials {
         }
 
         return blocks;
-    } 
+    }
 
     public static UtilityMaterial test = new UtilityMaterial(
         "test",
         0x0,
-        BlockDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build()
-    )
-        .ore(OreDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build());
+        new BlockDto(Material.ROCK, 10.0F, 10.0F, STONE))
+        .ore(new OreDto(Material.ROCK, 10.0F, 10.0F, STONE));
 
     public static UtilityMaterial doubletest = new UtilityMaterial(
         "doubletest",
         0x00FF00,
-        BlockDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build()
-    )
+        new BlockDto(Material.ROCK, 10.0F, 10.0F, STONE))
         .crystal()
-        .ore(OreDto.builder().material(Material.ROCK).hardness(10.0F).resistance(10.0F).harvest(STONE).build())
+        .ore(new OreDto(Material.ROCK, 10.0F, 10.0F, STONE)
+            .dropItemAndXp(InternalItem.CRYSTAL, 3, 1)
+            .explodableChance(1.0F))
         .fluid(FluidDto.builder().color(0xFF0000).temperature(550).luminosity(10).viscosity(6000).build())
         .material(MaterialDto.builder().isCraftable(true).isCastable(true).build())
-        .appendTraits(MaterialTraits.instable, MaterialTraits.arcane)
-        .appendTraits(MaterialTypes.HEAD, MaterialTraits.mutate)
-        .appendTraits(MaterialTypes.HANDLE, MaterialTraits.naturebound);
+        .traits(MaterialTraits.instable, MaterialTraits.arcane)
+        .traits(MaterialTypes.HEAD, MaterialTraits.mutate)
+        .traits(MaterialTypes.HANDLE, MaterialTraits.naturebound);
 }
