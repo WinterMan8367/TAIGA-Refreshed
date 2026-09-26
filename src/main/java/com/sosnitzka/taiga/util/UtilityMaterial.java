@@ -35,7 +35,7 @@ public class UtilityMaterial {
     private final BasicItem dust;
     private final BasicItem nugget;
     private final BasicBlock block;
-    private final Material tinkerMaterial;
+    private @Nullable Material tinkerMaterial;
     
     private @Nullable BasicItem crystal;
     private @Nullable BlockOre ore;
@@ -57,9 +57,9 @@ public class UtilityMaterial {
         }
 
         this.name = name;
-        ingot = new BasicItem(name + "_" + PREFIX_INGOT, PREFIX_INGOT);
-        dust = new BasicItem(name + "_" + PREFIX_DUST, PREFIX_DUST);
-        nugget = new BasicItem(name + "_" + PREFIX_NUGGET, PREFIX_NUGGET);
+        ingot = new BasicItem(name, PREFIX_INGOT);
+        dust = new BasicItem(name, PREFIX_DUST);
+        nugget = new BasicItem(name, PREFIX_NUGGET);
         tinkerMaterial = new Material(name, nameHexColor);
 
         block = new BasicBlock(
@@ -73,6 +73,11 @@ public class UtilityMaterial {
         );
 
         Materials.add(this);
+    }
+
+    public UtilityMaterial forciblyRemoveMaterial() {
+        tinkerMaterial = null;
+        return this;
     }
 
     public UtilityMaterial ore(@Nullable OreDto oreProps) {
@@ -140,7 +145,7 @@ public class UtilityMaterial {
 
     public UtilityMaterial crystal() {
         if (!hasCrystal()) {
-            crystal = new BasicItem(name + "_" + PREFIX_CRYSTAL, PREFIX_CRYSTAL);
+            crystal = new BasicItem(name, PREFIX_CRYSTAL);
         }
 
         return this;
@@ -148,6 +153,10 @@ public class UtilityMaterial {
 
     public UtilityMaterial traits(AbstractTrait ...traits) {
         for (AbstractTrait trait : traits) {
+            if (tinkerMaterial == null) {
+                throw new NullPointerException("An attempt to assign a trait to material that was forcibly removed when the variable was declared");
+            }
+
             tinkerMaterial.addTrait(trait);
         }
 
@@ -156,6 +165,10 @@ public class UtilityMaterial {
 
     public UtilityMaterial traits(String type, AbstractTrait ...traits) {
         for (AbstractTrait trait : traits) {
+            if (tinkerMaterial == null) {
+                throw new NullPointerException("An attempt to assign a trait to material that was forcibly removed when the variable was declared");
+            }
+            
             tinkerMaterial.addTrait(trait, type);
         }
         
