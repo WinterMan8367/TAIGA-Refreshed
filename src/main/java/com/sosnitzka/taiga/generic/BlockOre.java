@@ -2,6 +2,9 @@ package com.sosnitzka.taiga.generic;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -18,6 +21,8 @@ import static slimeknights.tconstruct.TConstruct.random;
 public class BlockOre extends BasicBlock {
     private final ItemStack dropItem;
     private final int xpAmount;
+    private final float explosionChance;
+    private final float explodableChance;
 
     public BlockOre(
         String name,
@@ -28,11 +33,15 @@ public class BlockOre extends BasicBlock {
         float lightLevel,
         String oreDictPrefix,
         ItemStack item,
-        int xp
+        int xp,
+        float explosionChance,
+        float explodableChance
     ) {
         super(name, material, hardness, resistance, harvest, lightLevel, oreDictPrefix);
         this.dropItem = item;
         this.xpAmount = xp;
+        this.explosionChance = Math.max((Math.min(explosionChance, 1.0F)), 0.0F);
+        this.explodableChance = Math.max((Math.min(explodableChance, 1.0F)), 0.0F);
     }
 
     @Override
@@ -68,14 +77,41 @@ public class BlockOre extends BasicBlock {
     @Override
     @ParametersAreNonnullByDefault
     public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
-        if (!worldIn.isRemote) {
-            if (random.nextFloat() < 0.5) {
+        if (explodableChance <= 0 || worldIn.isRemote) {
+            return;
+        }
+
+        if (random.nextFloat() < explodableChance) {
+            worldIn.newExplosion(
+                null,
+                pos.getX(),
+                pos.getY(),
+                pos.getZ(),
+                random.nextFloat() * 4f + 1.5f,
+                true,
+                true
+            );
+        }
+    }
+
+    @Override
+    @SuppressWarnings("null")
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+
+        if (explosionChance <= 0 || (state.getBlock().canSilkHarvest(worldIn, pos, worldIn.getBlockState(pos), player)
+            && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) > 0)
+        ) {
+            return;
+        }
+
+        if (random.nextFloat() < explosionChance) {
+            if (!worldIn.isRemote) {
                 worldIn.newExplosion(
                     null,
                     pos.getX(),
-                    pos.getY(),
+                    pos.getY() + 1 / 16f,
                     pos.getZ(),
-                    random.nextFloat() * 4f + 1.5f,
+                    1.5f,
                     true,
                     true
                 );

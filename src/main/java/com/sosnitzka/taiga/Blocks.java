@@ -117,7 +117,7 @@ public class Blocks {
 
     // Community
     public static Block dilithiumOre = new BlockOre("dilithium_ore", Material.GLASS, 18f, 18f, DIAMOND, 0.73f,
-            PREFIX_ORE, new ItemStack(Items.dilithiumCrystal, 3), 10);
+            PREFIX_ORE, new ItemStack(Items.dilithiumCrystal, 3), 10, 0F, 0.5F);
     public static Block dilithiumBlock = new BasicBlock("dilithium_block", Material.GLASS, 18f, 18f, DIAMOND, 0.73f,
             PREFIX_BLOCK);
 
