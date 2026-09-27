@@ -20,6 +20,7 @@ import static com.sosnitzka.taiga.util.Utils.PREFIX_ORE;
 import static slimeknights.tconstruct.TConstruct.random;
 import static slimeknights.tconstruct.library.utils.HarvestLevels.STONE;
 
+// TODO: delete
 public class BlockTiberium extends BasicBlock {
 
     public BlockTiberium() {
@@ -39,10 +40,10 @@ public class BlockTiberium extends BasicBlock {
         return (random.nextInt(3 + fortune) + 1);
     }
 
-    @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Items.tiberiumCrystal;
-    }
+    // @Override
+    // public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    //     return Items.tiberiumCrystal;
+    // }
 
     @Override
     public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {

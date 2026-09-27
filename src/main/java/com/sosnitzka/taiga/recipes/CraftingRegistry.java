@@ -26,45 +26,8 @@ public class CraftingRegistry {
             convertion(event, Item.getItemFromBlock(material.getBlock()), material.getIngot(), material.getNugget());
         }
 
-        convertion(event, Item.getItemFromBlock(Blocks.tinBlock), Items.tinIngot, Items.tinNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.copperBlock), Items.copperIngot, Items.copperNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.bronzeBlock), Items.bronzeIngot, Items.bronzeNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.tiberiumBlock), Items.tiberiumIngot, Items.tiberiumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.auroriumBlock), Items.auroriumIngot, Items.auroriumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.prometheumBlock), Items.prometheumIngot, Items.prometheumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.duraniteBlock), Items.duraniteIngot, Items.duraniteNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.valyriumBlock), Items.valyriumIngot, Items.valyriumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.vibraniumBlock), Items.vibraniumIngot, Items.vibraniumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.karmesineBlock), Items.karmesineIngot, Items.karmesineNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.oviumBlock), Items.oviumIngot, Items.oviumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.jauxumBlock), Items.jauxumIngot, Items.jauxumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.palladiumBlock), Items.palladiumIngot, Items.palladiumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.uruBlock), Items.uruIngot, Items.uruNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.osramBlock), Items.osramIngot, Items.osramNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.eezoBlock), Items.eezoIngot, Items.eezoNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.abyssumBlock), Items.abyssumIngot, Items.abyssumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.terraxBlock), Items.terraxIngot, Items.terraxNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.triberiumBlock), Items.triberiumIngot, Items.triberiumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.fractumBlock), Items.fractumIngot, Items.fractumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.violiumBlock), Items.violiumIngot, Items.violiumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.proxiiBlock), Items.proxiiIngot, Items.proxiiNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.tritoniteBlock), Items.tritoniteIngot, Items.tritoniteNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.ignitzBlock), Items.ignitzIngot, Items.ignitzNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.imperomiteBlock), Items.imperomiteIngot, Items.imperomiteNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.solariumBlock), Items.solariumIngot, Items.solariumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.nihiliteBlock), Items.nihiliteIngot, Items.nihiliteNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.adamantBlock), Items.adamantIngot, Items.adamantNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.dyoniteBlock), Items.dyoniteIngot, Items.dyoniteNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.nucleumBlock), Items.nucleumIngot, Items.nucleumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.lumixBlock), Items.lumixIngot, Items.lumixNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.seismumBlock), Items.seismumIngot, Items.seismumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.astriumBlock), Items.astriumIngot, Items.astriumNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.niobBlock), Items.niobIngot, Items.niobNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.yrdeenBlock), Items.yrdeenIngot, Items.yrdeenNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.ioxBlock), Items.ioxIngot, Items.ioxNugget);
         convertion(event, Item.getItemFromBlock(Blocks.blockMeteorite), Items.meteoriteIngot, Items.meteoriteNugget);
         convertion(event, Item.getItemFromBlock(Blocks.blockObsidiorite), Items.obsidioriteIngot, Items.obsidioriteNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.dilithiumBlock), Items.dilithiumIngot, Items.dilithiumNugget);
     }
 
     @SuppressWarnings("null")

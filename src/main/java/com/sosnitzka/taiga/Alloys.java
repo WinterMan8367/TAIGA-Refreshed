@@ -13,63 +13,63 @@ public class Alloys {
      * Registers alloying in the smeltery
      */
     public static void register() {
-        registerTinkerAlloy(new FluidStack(terraxFluid, 2), new FluidStack(karmesineFluid, 1), new FluidStack
-                (oviumFluid, 1), new FluidStack(jauxumFluid, 1));
-        registerTinkerAlloy(new FluidStack(triberiumFluid, 1), new FluidStack(tiberiumFluid, 5), new FluidStack
-                (basaltFluid, 1));
-        registerTinkerAlloy(new FluidStack(triberiumFluid, 1), new FluidStack(tiberiumFluid, 5), new FluidStack
-                (dilithiumFluid, 2));
-        registerTinkerAlloy(new FluidStack(fractumFluid, 2), new FluidStack(triberiumFluid, 3), new FluidStack
-                (TinkerFluids.obsidian, 3), new FluidStack(abyssumFluid, 1));
-        registerTinkerAlloy(new FluidStack(violiumFluid, 2), new FluidStack(auroriumFluid, 3), new FluidStack
+        registerTinkerAlloy(new FluidStack(Materials.terrax.getFluid(), 2), new FluidStack(Materials.karmesine.getFluid(), 1), new FluidStack
+                (Materials.ovium.getFluid(), 1), new FluidStack(Materials.jauxum.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.triberium.getFluid(), 1), new FluidStack(Materials.tiberium.getFluid(), 5), new FluidStack
+                (Materials.basalt.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.triberium.getFluid(), 1), new FluidStack(Materials.tiberium.getFluid(), 5), new FluidStack
+                (Materials.dilithium.getFluid(), 2));
+        registerTinkerAlloy(new FluidStack(Materials.fractum.getFluid(), 2), new FluidStack(Materials.triberium.getFluid(), 3), new FluidStack
+                (TinkerFluids.obsidian, 3), new FluidStack(Materials.abyssum.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.violium.getFluid(), 2), new FluidStack(Materials.aurorium.getFluid(), 3), new FluidStack
                 (TinkerFluids.ardite, 2));
-        registerTinkerAlloy(new FluidStack(proxiiFluid, 3), new FluidStack(prometheumFluid, 3), new FluidStack
-                (palladiumFluid, 3), new FluidStack(eezoFluid, 1));
-        registerTinkerAlloy(new FluidStack(tritoniteFluid, 2), new FluidStack(TinkerFluids.cobalt, 3), new FluidStack
-                (terraxFluid, 2));
-        registerTinkerAlloy(new FluidStack(ignitzFluid, 2), new FluidStack(TinkerFluids.ardite, 2), new FluidStack
-                (terraxFluid, 2), new FluidStack(osramFluid, 1));
-        registerTinkerAlloy(new FluidStack(imperomiteFluid, 2), new FluidStack(duraniteFluid, 3), new FluidStack
-                (prometheumFluid, 1), new FluidStack(abyssumFluid, 1));
-        registerTinkerAlloy(new FluidStack(solariumFluid, 2), new FluidStack(valyriumFluid, 2), new FluidStack
-                (uruFluid, 2), new FluidStack(nucleumFluid, 1));
-        registerTinkerAlloy(new FluidStack(adamantFluid, 3), new FluidStack(nihiliteFluid, 1), new FluidStack
-                (ioxFluid, 3));
-        registerTinkerAlloy(new FluidStack(nihiliteFluid, 1), new FluidStack(vibraniumFluid, 1), new FluidStack
-                (solariumFluid, 1));
-        registerTinkerAlloy(new FluidStack(seismumFluid, 4), new FluidStack(TinkerFluids.obsidian, 4), new FluidStack
-                (triberiumFluid, 2), new FluidStack(eezoFluid, 1));
-        registerTinkerAlloy(new FluidStack(astriumFluid, 2), new FluidStack(terraxFluid, 3), new FluidStack
-                (auroriumFluid, 2));
-        registerTinkerAlloy(new FluidStack(niobFluid, 3), new FluidStack(palladiumFluid, 3), new FluidStack
-                (duraniteFluid, 1), new FluidStack(osramFluid, 1));
-        registerTinkerAlloy(new FluidStack(yrdeenFluid, 3), new FluidStack(uruFluid, 3), new FluidStack
-                (valyriumFluid, 3), new FluidStack(osramFluid, 1));
-        registerTinkerAlloy(new FluidStack(yrdeenFluid, 3), new FluidStack(uruFluid, 3), new FluidStack
-                (valyriumFluid, 3), new FluidStack(eezoFluid, 1));
-        registerTinkerAlloy(new FluidStack(yrdeenFluid, 3), new FluidStack(uruFluid, 3), new FluidStack
-                (valyriumFluid, 3), new FluidStack(abyssumFluid, 1));
-        registerTinkerAlloy(new FluidStack(ioxFluid, 1), new FluidStack(eezoFluid, 2), new FluidStack(abyssumFluid,
-                2), new FluidStack(osramFluid, 2), new FluidStack(obsidioriteFluid, 9));
-        registerTinkerAlloy(new FluidStack(ioxFluid, 1), new FluidStack(eezoFluid, 2), new FluidStack(abyssumFluid,
-                2), new FluidStack(osramFluid, 2), new FluidStack(meteoriteFluid, 9), new FluidStack(TinkerFluids
+        registerTinkerAlloy(new FluidStack(Materials.proxii.getFluid(), 3), new FluidStack(Materials.prometheum.getFluid(), 3), new FluidStack
+                (Materials.palladium.getFluid(), 3), new FluidStack(Materials.eezo.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.tritonite.getFluid(), 2), new FluidStack(TinkerFluids.cobalt, 3), new FluidStack
+                (Materials.terrax.getFluid(), 2));
+        registerTinkerAlloy(new FluidStack(Materials.ignitz.getFluid(), 2), new FluidStack(TinkerFluids.ardite, 2), new FluidStack
+                (Materials.terrax.getFluid(), 2), new FluidStack(Materials.osram.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.imperomite.getFluid(), 2), new FluidStack(Materials.duranite.getFluid(), 3), new FluidStack
+                (Materials.prometheum.getFluid(), 1), new FluidStack(Materials.abyssum.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.solarium.getFluid(), 2), new FluidStack(Materials.valyrium.getFluid(), 2), new FluidStack
+                (Materials.uru.getFluid(), 2), new FluidStack(Materials.nucleum.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.adamant.getFluid(), 3), new FluidStack(Materials.nihilite.getFluid(), 1), new FluidStack
+                (Materials.iox.getFluid(), 3));
+        registerTinkerAlloy(new FluidStack(Materials.nihilite.getFluid(), 1), new FluidStack(Materials.vibranium.getFluid(), 1), new FluidStack
+                (Materials.solarium.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.seismum.getFluid(), 4), new FluidStack(TinkerFluids.obsidian, 4), new FluidStack
+                (Materials.triberium.getFluid(), 2), new FluidStack(Materials.eezo.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.astrium.getFluid(), 2), new FluidStack(Materials.terrax.getFluid(), 3), new FluidStack
+                (Materials.aurorium.getFluid(), 2));
+        registerTinkerAlloy(new FluidStack(Materials.niob.getFluid(), 3), new FluidStack(Materials.palladium.getFluid(), 3), new FluidStack
+                (Materials.duranite.getFluid(), 1), new FluidStack(Materials.osram.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.yrdeen.getFluid(), 3), new FluidStack(Materials.uru.getFluid(), 3), new FluidStack
+                (Materials.valyrium.getFluid(), 3), new FluidStack(Materials.osram.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.yrdeen.getFluid(), 3), new FluidStack(Materials.uru.getFluid(), 3), new FluidStack
+                (Materials.valyrium.getFluid(), 3), new FluidStack(Materials.eezo.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.yrdeen.getFluid(), 3), new FluidStack(Materials.uru.getFluid(), 3), new FluidStack
+                (Materials.valyrium.getFluid(), 3), new FluidStack(Materials.abyssum.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.iox.getFluid(), 1), new FluidStack(Materials.eezo.getFluid(), 2), new FluidStack(Materials.abyssum.getFluid(),
+                2), new FluidStack(Materials.osram.getFluid(), 2), new FluidStack(obsidioriteFluid, 9));
+        registerTinkerAlloy(new FluidStack(Materials.iox.getFluid(), 1), new FluidStack(Materials.eezo.getFluid(), 2), new FluidStack(Materials.abyssum.getFluid(),
+                2), new FluidStack(Materials.osram.getFluid(), 2), new FluidStack(meteoriteFluid, 9), new FluidStack(TinkerFluids
                 .obsidian, 9));
-        registerTinkerAlloy(new FluidStack(lumixFluid, 1), new FluidStack(palladiumFluid, 1), new FluidStack
-                (terraxFluid, 1));
+        registerTinkerAlloy(new FluidStack(Materials.lumix.getFluid(), 1), new FluidStack(Materials.palladium.getFluid(), 1), new FluidStack
+                (Materials.terrax.getFluid(), 1));
         registerTinkerAlloy(new FluidStack(obsidioriteFluid, 1), new FluidStack(meteoriteFluid, 1), new FluidStack
                 (TinkerFluids.obsidian, 1));
-        registerTinkerAlloy(new FluidStack(nucleumFluid, 3), new FluidStack(proxiiFluid, 3), new FluidStack
-                (abyssumFluid, 1), new FluidStack(osramFluid, 1));
-        registerTinkerAlloy(new FluidStack(nucleumFluid, 3), new FluidStack(imperomiteFluid, 3), new FluidStack
-                (osramFluid, 1), new FluidStack(eezoFluid, 1));
-        registerTinkerAlloy(new FluidStack(nucleumFluid, 3), new FluidStack(niobFluid, 3), new FluidStack(eezoFluid,
-                1), new FluidStack(abyssumFluid, 1));
-        registerTinkerAlloy(new FluidStack(dyoniteFluid, 3), new FluidStack(triberiumFluid, 3), new FluidStack
-                (fractumFluid, 1), new FluidStack(seismumFluid, 1), new FluidStack(osramFluid, 1));
-        registerTinkerAlloy(new FluidStack(dyoniteFluid, 3), new FluidStack(tiberiumFluid, 12), new FluidStack
-                (fractumFluid, 1), new FluidStack(seismumFluid, 1), new FluidStack(osramFluid, 1));
+        registerTinkerAlloy(new FluidStack(Materials.nucleum.getFluid(), 3), new FluidStack(Materials.proxii.getFluid(), 3), new FluidStack
+                (Materials.abyssum.getFluid(), 1), new FluidStack(Materials.osram.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.nucleum.getFluid(), 3), new FluidStack(Materials.imperomite.getFluid(), 3), new FluidStack
+                (Materials.osram.getFluid(), 1), new FluidStack(Materials.eezo.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.nucleum.getFluid(), 3), new FluidStack(Materials.niob.getFluid(), 3), new FluidStack(Materials.eezo.getFluid(),
+                1), new FluidStack(Materials.abyssum.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.dyonite.getFluid(), 3), new FluidStack(Materials.triberium.getFluid(), 3), new FluidStack
+                (Materials.fractum.getFluid(), 1), new FluidStack(Materials.seismum.getFluid(), 1), new FluidStack(Materials.osram.getFluid(), 1));
+        registerTinkerAlloy(new FluidStack(Materials.dyonite.getFluid(), 3), new FluidStack(Materials.tiberium.getFluid(), 12), new FluidStack
+                (Materials.fractum.getFluid(), 1), new FluidStack(Materials.seismum.getFluid(), 1), new FluidStack(Materials.osram.getFluid(), 1));
         registerTinkerAlloy(new FluidStack(nitroniteFluid, 6), new FluidStack(magmaFluid, 6), new FluidStack
-                (osramFluid, 1));
+                (Materials.osram.getFluid(), 1));
 
     }
 }

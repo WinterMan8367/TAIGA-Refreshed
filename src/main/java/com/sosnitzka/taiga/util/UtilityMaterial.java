@@ -24,6 +24,8 @@ import com.sosnitzka.taiga.generic.BlockOre;
 import lombok.Getter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.materials.Material;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.smeltery.block.BlockMolten;
@@ -43,11 +45,7 @@ public class UtilityMaterial {
     private @Nullable BlockMolten moltenFluid;
     private @Nullable MaterialDto materialStats;
 
-    public UtilityMaterial(
-        String name,
-        int nameHexColor,
-        BlockDto blockProps
-    ) {
+    public UtilityMaterial(String name, int nameHexColor, BlockDto blockProps) {
         if (name == null || name.length() == 0) {
             throw new NullPointerException("Material name must not be null or zero-length");
         }
@@ -73,6 +71,10 @@ public class UtilityMaterial {
         );
 
         Materials.add(this);
+    }
+
+    public UtilityMaterial(String name, TextFormatting nameColor, BlockDto blockProps) {
+        this(name, Util.enumChatFormattingToColor(nameColor), blockProps);
     }
 
     public UtilityMaterial forciblyRemoveMaterial() {
