@@ -40,6 +40,9 @@ material.obsidiorite.name=Obsidiorite
 material.magma.name=Magma
 material.nitronite.name=Nitronit
 
+tile.tin_block.name=Tin Block
+tile.copper_block.name=Copper Block
+tile.bronze_block.name=Bronze Block
 tile.basalt_block.name=Basalt Block
 tile.dilithium_block.name=Dilithium Block
 tile.tiberium_block.name=Tiberium Block
@@ -75,15 +78,17 @@ tile.astrium_block.name=Astrium Block
 tile.niob_block.name=Niob Block
 tile.yrdeen_block.name=Yrdeen Block
 tile.iox_block.name=Iox Block
+tile.meteorite_stone.name=Meteorite Stone
+tile.meteorite_cobblestone.name=Meteorite Cobblestone
 tile.meteorite_block.name=Meteorite Block
+tile.obsidiorite_stone.name=Obsidiorite Stone
+tile.obsidiorite_cobblestone.name=Obsidiorite Cobblestone
 tile.obsidiorite_block.name=Obsidiorite Block
 tile.magma_block.name=Magma Block
 tile.nitronite_block.name=Nitronite Block
-tile.meteoritecobble_block.name=Meteorite Cobble Block
-tile.obsidioritecobble_block.name=Meteorite Cobble Block
 
-
-
+tile.tin_ore.name=Tin Ore
+tile.copper_ore.name=Copper Ore
 tile.basalt_ore.name=Basalt Ore
 tile.tiberium_ore.name=Tiberium Ore
 tile.dilithium_ore.name=Dilithium Ore
@@ -127,7 +132,9 @@ tile.nitronite_ore.name=Nitronite Ore
 item.dilithium_crystal.name=Dilithium Crystal
 item.tiberium_crystal.name=Tiberium Crystal
 
-
+item.tin_nugget.name=Tin Nugget
+item.copper_nugget.name=Copper Nugget
+item.bronze_nugget.name=Bronze Nugget
 item.basalt_nugget.name=Basalt Nugget
 item.dilithium_nugget.name=Dilithium Nugget
 item.tiberium_nugget.name=Tiberium Nugget
@@ -169,7 +176,9 @@ item.magma_nugget.name=Magma Nugget
 item.nitronite_nugget.name=Nitronite Nugget
 item.iron_nugget.name=Iron Nugget
 
-
+item.tin_dust.name=Tin Dust
+item.copper_dust.name=Copper Dust
+item.bronze_dust.name=Bronze Dust
 item.basalt_dust.name=Basalt Dust
 item.tiberium_dust.name=Tiberium Dust
 item.dilithium_dust.name=Dilithium Dust
@@ -210,6 +219,9 @@ item.obsidiorite_dust.name=Obsidiorite Dust
 item.magma_dust.name=Magma Dust
 item.nitronite_dust.name=Nitronite Dust
 
+item.tin_ingot.name=Tin Ingot
+item.copper_ingot.name=Copper Ingot
+item.bronze_ingot.name=Bronze Ingot
 item.basalt_ingot.name=Basalt Ingot
 item.tiberium_ingot.name=Tiberium Ingot
 item.dilithium_ingot.name=Dilithium Ingot
@@ -289,7 +301,6 @@ fluid.tconstruct.meteorite_fluid.name=Meteorite Fluid
 fluid.tconstruct.obsidiorite_fluid.name=Obsidiorite Fluid
 fluid.tconstruct.magma_fluid.name=Magma Fluid
 fluid.tconstruct.nitronite_fluid.name=Nitronite Fluid
-
 
 modifier.catcher.name=Catcher
 modifier.catcher.desc=§oGotta catch 'em all!§r\nRandomly catch Mobs and stores it... and release it!

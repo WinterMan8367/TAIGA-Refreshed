@@ -20,6 +20,8 @@ public class TAIGAConfiguration {
     public static boolean ironGen;
     public static boolean endGen;
 
+    public static boolean tinGen;
+    public static boolean copperGen;
     public static boolean tiberiumGen;
     public static boolean prometheumGen;
     public static boolean valyriumGen;
@@ -36,7 +38,8 @@ public class TAIGAConfiguration {
     public static boolean palladiumGen;
     public static boolean abyssumGen;
 
-
+    public static int TIN_VAL;
+    public static int COPPER_VAL;
     public static int IRON_VAL;
     public static int TIBERIUM_VAL;
     public static int PROMETHEUM_VAL;
@@ -88,6 +91,8 @@ public class TAIGAConfiguration {
         final int RESFAC_MIN_VALUE = 0;
         final int RESFAC_MAX_VALUE = 100;
 
+        final int TIN_DEFAULT = 20;
+        final int COPPER_DEFAULT = 20;
         final int IRON_DEFAULT = 20;
         final int TIBERIUM_DEFAULT = 15;
         final int PROMETHEUM_DEFAULT = 18;
@@ -138,6 +143,12 @@ public class TAIGAConfiguration {
          */
 
 
+        Property tinValueProp = config.get(CATEGORY_NAME_ORE_GEN, "Tin", TIN_DEFAULT, "generation count per " +
+                "chunk", RESFAC_MIN_VALUE, RESFAC_MAX_VALUE);
+        tinValueProp.setLanguageKey("gui.taiga_configuration.tin_multiplier");
+        Property copperValueProp = config.get(CATEGORY_NAME_ORE_GEN, "Copper", COPPER_DEFAULT, "generation count per " +
+                "chunk", RESFAC_MIN_VALUE, RESFAC_MAX_VALUE);
+        copperValueProp.setLanguageKey("gui.taiga_configuration.copper_multiplier");
         Property ironValueProp = config.get(CATEGORY_NAME_ORE_GEN, "Iron", IRON_DEFAULT, "generation count per " +
                 "chunk", RESFAC_MIN_VALUE, RESFAC_MAX_VALUE);
         ironValueProp.setLanguageKey("gui.taiga_configuration.iron_multiplier");
@@ -192,6 +203,8 @@ public class TAIGAConfiguration {
 
 
         List<String> propOrderOreGen = new ArrayList<String>();
+        propOrderOreGen.add(tinValueProp.getName());
+        propOrderOreGen.add(copperValueProp.getName());
         propOrderOreGen.add(ironValueProp.getName());
         propOrderOreGen.add(basaltValueProp.getName());
         propOrderOreGen.add(tiberiumValueProp.getName());
@@ -215,6 +228,14 @@ public class TAIGAConfiguration {
         if (readFieldsFromConfig) {
             ironGen = ironSwitch.getBoolean(false);
             endGen = endSwitch.getBoolean(true);
+            TIN_VAL = tinValueProp.getInt(TIN_DEFAULT);
+            if (TIN_VAL > RESFAC_MAX_VALUE || TIN_VAL < RESFAC_MIN_VALUE) {
+                TIN_VAL = TIN_DEFAULT;
+            }
+            COPPER_VAL = copperValueProp.getInt(COPPER_DEFAULT);
+            if (COPPER_VAL > RESFAC_MAX_VALUE || COPPER_VAL < RESFAC_MIN_VALUE) {
+                COPPER_VAL = COPPER_DEFAULT;
+            }
             IRON_VAL = ironValueProp.getInt(IRON_DEFAULT);
             if (IRON_VAL > RESFAC_MAX_VALUE || IRON_VAL < RESFAC_MIN_VALUE) {
                 IRON_VAL = IRON_DEFAULT;
@@ -287,6 +308,8 @@ public class TAIGAConfiguration {
 
         ironSwitch.set(ironGen);
         endSwitch.set(endGen);
+        tinValueProp.set(TIN_VAL);
+        copperValueProp.set(COPPER_VAL);
         ironValueProp.set(IRON_VAL);
         tiberiumValueProp.set(TIBERIUM_VAL);
         prometheumValueProp.set(PROMETHEUM_VAL);

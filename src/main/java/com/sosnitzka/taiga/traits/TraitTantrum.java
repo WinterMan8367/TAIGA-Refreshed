@@ -19,7 +19,7 @@ import slimeknights.tconstruct.common.Sounds;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 
-import static com.sosnitzka.taiga.Blocks.tiberiumOre;
+import com.sosnitzka.taiga.Materials;
 
 /*
  *  Collects tiberium, to release it for an explosion
@@ -38,7 +38,7 @@ public class TraitTantrum extends AbstractKeyBindTrait {
     public void blockHarvestDrops(ItemStack tool, BlockEvent.HarvestDropsEvent event) {
         World w = event.getWorld();
         if (!w.isRemote) {
-            if (event.getState().getBlock().equals(tiberiumOre)) {
+            if (event.getState().getBlock().equals(Materials.tiberium.getOre())) {
                 event.getDrops().clear();
                 NBTTagCompound tag = TagUtil.getExtraTag(tool);
                 Data data = Data.read(tag);

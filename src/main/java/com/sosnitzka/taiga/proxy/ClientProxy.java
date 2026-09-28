@@ -2,9 +2,12 @@ package com.sosnitzka.taiga.proxy;
 
 import com.sosnitzka.taiga.Blocks;
 import com.sosnitzka.taiga.Items;
+import com.sosnitzka.taiga.Materials;
 import com.sosnitzka.taiga.TAIGA;
 import com.sosnitzka.taiga.TAIGAConfiguration;
 import com.sosnitzka.taiga.book.ContentOre;
+import com.sosnitzka.taiga.util.UtilityMaterial;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -29,13 +32,11 @@ import slimeknights.tconstruct.library.materials.Material;
 import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
 
-import static com.sosnitzka.taiga.Fluids.*;
 import static com.sosnitzka.taiga.MaterialTraits.*;
 import static com.sosnitzka.taiga.keys.Keybindings.altKey;
 import static slimeknights.mantle.client.book.BookLoader.registerPageType;
 import static slimeknights.tconstruct.library.utils.HarvestLevels.harvestLevelNames;
 
-@SuppressWarnings("unused")
 public class ClientProxy extends CommonProxy {
 
     private static void registerBlockModel(Block block) {
@@ -78,22 +79,32 @@ public class ClientProxy extends CommonProxy {
                 }
             }
         }
+
+        for (UtilityMaterial material : Materials.getAll()) {
+            registerItemModel(material.getIngot());
+            registerItemModel(material.getDust());
+            registerItemModel(material.getNugget());
+            if (material.hasCrystal()) registerItemModel(material.getCrystal());
+            if (material.hasOre()) registerBlockModel(material.getOre());
+            registerBlockModel(material.getBlock());
+        }
     }
 
+    @SuppressWarnings("null")
     public void setRenderInfo(final Material material) {
-        if (material.equals(adamant)) metalRender(material, adamantFluid.getColor(), 1f, 0.8f, 0f);
-        else if (material.equals(duranite)) metalRender(material, duraniteFluid.getColor(), .4f, .4f, 0);
-        else if (material.equals(tiberium)) metalRender(material, tiberiumFluid.getColor(), 1f, .3f, 0f);
-        else if (material.equals(palladium)) metalRender(material, palladiumFluid.getColor(), .7f, .6f, 0f);
-        else if (material.equals(osram)) metalRender(material, osramFluid.getColor(), .7f, .6f, 0f);
-        else if (material.equals(tritonite)) metalRender(material, tritoniteFluid.getColor(), .3f, .3f, 0f);
-        else if (material.equals(nucleum)) metalRender(material, nucleumFluid.getColor(), .4f, .6f, .2f);
-        else if (material.equals(triberium)) metalRender(material, triberiumFluid.getColor(), 2f, 2f, 0.5f);
-        else if (material.equals(solarium)) metalRender(material, solariumFluid.getColor(), 1.5f, 1.5f, 0.5f);
-        else if (material.equals(uru)) metalRender(material, uruFluid.getColor(), 1.0f, 1.0f, 0.3f);
-        else if (material.equals(imperomite)) metalRender(material, imperomiteFluid.getColor(), 0.4f, 1.0f, 0.7f);
-        else if (material.equals(vibranium)) metalRender(material, vibraniumFluid.getColor(), 0.6f, .8f, 1f);
-        else if (material.equals(valyrium)) metalRender(material, valyriumFluid.getColor(), .8f, 1.5f, -0.1f);
+        if (material.equals(Materials.adamant.getTinkerMaterial())) metalRender(material, Materials.adamant.getFluid().getColor(), 1f, 0.8f, 0f);
+        else if (material.equals(Materials.duranite.getTinkerMaterial())) metalRender(material, Materials.duranite.getFluid().getColor(), .4f, .4f, 0);
+        else if (material.equals(Materials.tiberium.getTinkerMaterial())) metalRender(material, Materials.tiberium.getFluid().getColor(), 1f, .3f, 0f);
+        else if (material.equals(Materials.palladium.getTinkerMaterial())) metalRender(material, Materials.palladium.getFluid().getColor(), .7f, .6f, 0f);
+        else if (material.equals(Materials.osram.getTinkerMaterial())) metalRender(material, Materials.osram.getFluid().getColor(), .7f, .6f, 0f);
+        else if (material.equals(Materials.tritonite.getTinkerMaterial())) metalRender(material, Materials.tritonite.getFluid().getColor(), .3f, .3f, 0f);
+        else if (material.equals(Materials.nucleum.getTinkerMaterial())) metalRender(material, Materials.nucleum.getFluid().getColor(), .4f, .6f, .2f);
+        else if (material.equals(Materials.triberium.getTinkerMaterial())) metalRender(material, Materials.triberium.getFluid().getColor(), 2f, 2f, 0.5f);
+        else if (material.equals(Materials.solarium.getTinkerMaterial())) metalRender(material, Materials.solarium.getFluid().getColor(), 1.5f, 1.5f, 0.5f);
+        else if (material.equals(Materials.uru.getTinkerMaterial())) metalRender(material, Materials.uru.getFluid().getColor(), 1.0f, 1.0f, 0.3f);
+        else if (material.equals(Materials.imperomite.getTinkerMaterial())) metalRender(material, Materials.imperomite.getFluid().getColor(), 0.4f, 1.0f, 0.7f);
+        else if (material.equals(Materials.vibranium.getTinkerMaterial())) metalRender(material, Materials.vibranium.getFluid().getColor(), 0.6f, .8f, 1f);
+        else if (material.equals(Materials.valyrium.getTinkerMaterial())) metalRender(material, Materials.valyrium.getFluid().getColor(), .8f, 1.5f, -0.1f);
         else {
             material.setRenderInfo(new MaterialRenderInfo.BlockTexture(new ResourceLocation("taiga:blocks/block/" +
                     material.getIdentifier())));
