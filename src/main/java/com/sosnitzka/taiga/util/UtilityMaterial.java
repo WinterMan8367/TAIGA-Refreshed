@@ -1,12 +1,6 @@
 package com.sosnitzka.taiga.util;
 
-import static com.sosnitzka.taiga.util.Utils.PREFIX_BLOCK;
-import static com.sosnitzka.taiga.util.Utils.PREFIX_CRYSTAL;
-import static com.sosnitzka.taiga.util.Utils.PREFIX_DUST;
-import static com.sosnitzka.taiga.util.Utils.PREFIX_FLUID;
-import static com.sosnitzka.taiga.util.Utils.PREFIX_INGOT;
-import static com.sosnitzka.taiga.util.Utils.PREFIX_NUGGET;
-import static com.sosnitzka.taiga.util.Utils.PREFIX_ORE;
+import static com.sosnitzka.taiga.util.Utils.*;
 
 import javax.annotation.Nullable;
 
@@ -116,7 +110,9 @@ public class UtilityMaterial {
                 itemStack,
                 oreProps.getXpAmount(),
                 oreProps.getExplosionChance(),
-                oreProps.getExplodableChance()
+                oreProps.getExplosionStrength(),
+                oreProps.getExplodableChance(),
+                oreProps.getExplodableStrength()
             );
         }
 

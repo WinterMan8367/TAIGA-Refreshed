@@ -20,8 +20,10 @@ public class OreDto extends BlockDto {
     private int xpAmount;
     /** Probability of exploding during extraction [0.0 < x <= 1.0] */
     private float explosionChance;
+    private float explosionStrength;
     /** Probability of exploding due to an external explosion [0.0 < x <= 1.0] */
     private float explodableChance;
+    private float explodableStrength;
 
     public OreDto(Material material, float hardness, float resistance, int harvest, float lightLevel) {
         super(material, hardness, resistance, harvest, lightLevel);
@@ -57,13 +59,15 @@ public class OreDto extends BlockDto {
         return this;
     }
 
-    public OreDto explosionChance(float x) {
-        explosionChance = x;
+    public OreDto explosionChance(float chance, float strength) {
+        explosionChance = chance;
+        explosionStrength = strength;
         return this;
     }
 
-    public OreDto explodableChance(float x) {
-        explodableChance = x;
+    public OreDto explodableChance(float chance, float strength) {
+        explodableChance = chance;
+        explodableStrength = chance;
         return this;
     }
 }

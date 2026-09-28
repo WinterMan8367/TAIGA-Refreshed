@@ -22,7 +22,9 @@ public class BlockOre extends BasicBlock {
     private final ItemStack dropItem;
     private final int xpAmount;
     private final float explosionChance;
+    private final float explosionStrength;
     private final float explodableChance;
+    private final float explodableStrength;
 
     public BlockOre(
         String name,
@@ -35,13 +37,17 @@ public class BlockOre extends BasicBlock {
         ItemStack item,
         int xp,
         float explosionChance,
-        float explodableChance
+        float explosionStrength,
+        float explodableChance,
+        float explodableStrength
     ) {
         super(name, material, hardness, resistance, harvest, lightLevel, oreDictPrefix);
         this.dropItem = item;
         this.xpAmount = xp;
         this.explosionChance = Math.max((Math.min(explosionChance, 1.0F)), 0.0F);
+        this.explosionStrength = explosionStrength;
         this.explodableChance = Math.max((Math.min(explodableChance, 1.0F)), 0.0F);
+        this.explodableStrength = explodableStrength;
     }
 
     @Override
@@ -77,27 +83,28 @@ public class BlockOre extends BasicBlock {
     @Override
     @ParametersAreNonnullByDefault
     public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
-        if (explodableChance <= 0 || worldIn.isRemote) {
+        if (explodableChance <= 0) {
             return;
         }
 
         if (random.nextFloat() < explodableChance) {
-            worldIn.newExplosion(
-                null,
-                pos.getX(),
-                pos.getY(),
-                pos.getZ(),
-                random.nextFloat() * 4f + 1.5f,
-                true,
-                true
-            );
+            if (!worldIn.isRemote) {
+                worldIn.newExplosion(
+                    null,
+                    pos.getX(),
+                    pos.getY(),
+                    pos.getZ(),
+                    explodableStrength,
+                    true,
+                    true
+                );
+            }
         }
     }
 
     @Override
     @SuppressWarnings("null")
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-
         if (explosionChance <= 0 || (state.getBlock().canSilkHarvest(worldIn, pos, worldIn.getBlockState(pos), player)
             && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) > 0)
         ) {
@@ -111,7 +118,7 @@ public class BlockOre extends BasicBlock {
                     pos.getX(),
                     pos.getY() + 1 / 16f,
                     pos.getZ(),
-                    1.5f,
+                    explosionStrength,
                     true,
                     true
                 );
