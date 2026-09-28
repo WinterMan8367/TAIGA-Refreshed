@@ -118,12 +118,14 @@ tile.astrium_block.name=Астриевый блок
 tile.niob_block.name=Ниобовый блок
 tile.yrdeen_block.name=Блок из металла Ирдин
 tile.iox_block.name=Блок из металла Иокс
+tile.meteorite_stone.name=Метеоритный камень
+tile.meteorite_cobblestone.name=Метеоритный булыжник
 tile.meteorite_block.name=Метеоритный блок
+tile.obsidiorite_stone.name=Обсидиоритный камень
+tile.obsidiorite_cobblestone.name=Обсидиоритный булыжник
 tile.obsidiorite_block.name=Обсидиоритный блок
 tile.magma_block.name=Магмовый блок
 tile.nitronite_block.name=Нитронитовый блок
-tile.meteoritecobble_block.name=Метеоритный булыжник
-tile.obsidioritecobble_block.name=Обсидиоритный булыжник
 
 tile.tin_ore.name=Оловянная руда
 tile.copper_ore.name=Медная руда

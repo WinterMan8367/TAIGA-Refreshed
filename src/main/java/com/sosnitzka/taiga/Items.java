@@ -12,17 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-import static com.sosnitzka.taiga.util.Utils.*;
-
 public class Items {
-    public static Item meteoriteIngot = new BasicItem("meteorite", PREFIX_INGOT);
-    public static Item meteoriteDust = new BasicItem("meteorite", PREFIX_DUST);
-    public static Item meteoriteNugget = new BasicItem("meteorite", PREFIX_NUGGET);
-
-    public static Item obsidioriteIngot = new BasicItem("obsidiorite", PREFIX_INGOT);
-    public static Item obsidioriteDust = new BasicItem("obsidiorite", PREFIX_DUST);
-    public static Item obsidioriteNugget = new BasicItem("obsidiorite", PREFIX_NUGGET);
-
     /**
      * Registers all materials' ingots and nuggets <br>
      * Detailed summary: <br>

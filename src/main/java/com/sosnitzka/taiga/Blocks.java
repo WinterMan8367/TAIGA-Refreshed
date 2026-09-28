@@ -16,18 +16,17 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 import static com.sosnitzka.taiga.MaterialTraits.*;
-import static com.sosnitzka.taiga.util.Utils.PREFIX_BLOCK;
 import static slimeknights.tconstruct.library.utils.HarvestLevels.*;
 
 public class Blocks {
-    public static Block blockMeteoriteCobble = new BlockCobble("meteoritecobble_block", Material.ROCK, 20f, 10f,
-            COBALT, 0.075f, PREFIX_BLOCK);
-    public static Block blockObsidioriteCobble = new BlockCobble("obsidioritecobble_block", Material.ROCK, 25f, 20f,
-            DURANITE, 0.035f, PREFIX_BLOCK);
-    public static Block blockMeteorite = new BlockMeteoriteRock("meteorite_block", Material.ROCK, 40f, 2000f, COBALT,
-            0.15f, PREFIX_BLOCK, blockMeteoriteCobble.getDefaultState());
-    public static Block blockObsidiorite = new BlockMeteoriteRock("obsidiorite_block", Material.ROCK, 50f, 4000f,
-            DURANITE, 0.2f, PREFIX_BLOCK, blockObsidioriteCobble.getDefaultState());
+    public static Block blockMeteoriteCobble = new BlockCobble("meteorite_cobblestone", Material.ROCK, 20f, 10f,
+            COBALT, 0.075f, null);
+    public static Block blockObsidioriteCobble = new BlockCobble("obsidiorite_cobblestone", Material.ROCK, 25f, 20f,
+            DURANITE, 0.035f, null);
+    public static Block blockMeteoriteStone = new BlockMeteoriteRock("meteorite_stone", Material.ROCK, 40f, 2000f, COBALT,
+            0.15f, null, blockMeteoriteCobble.getDefaultState());
+    public static Block blockObsidioriteStone = new BlockMeteoriteRock("obsidiorite_stone", Material.ROCK, 50f, 4000f,
+            DURANITE, 0.2f, null, blockObsidioriteCobble.getDefaultState());
 
     /**
      * Registers all materials' ingots and nuggets <br>

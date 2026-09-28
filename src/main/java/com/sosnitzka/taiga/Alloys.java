@@ -50,13 +50,13 @@ public class Alloys {
         registerTinkerAlloy(new FluidStack(Materials.yrdeen.getFluid(), 3), new FluidStack(Materials.uru.getFluid(), 3), new FluidStack
                 (Materials.valyrium.getFluid(), 3), new FluidStack(Materials.abyssum.getFluid(), 1));
         registerTinkerAlloy(new FluidStack(Materials.iox.getFluid(), 1), new FluidStack(Materials.eezo.getFluid(), 2), new FluidStack(Materials.abyssum.getFluid(),
-                2), new FluidStack(Materials.osram.getFluid(), 2), new FluidStack(obsidioriteFluid, 9));
+                2), new FluidStack(Materials.osram.getFluid(), 2), new FluidStack(Materials.obsidiorite.getFluid(), 9));
         registerTinkerAlloy(new FluidStack(Materials.iox.getFluid(), 1), new FluidStack(Materials.eezo.getFluid(), 2), new FluidStack(Materials.abyssum.getFluid(),
-                2), new FluidStack(Materials.osram.getFluid(), 2), new FluidStack(meteoriteFluid, 9), new FluidStack(TinkerFluids
+                2), new FluidStack(Materials.osram.getFluid(), 2), new FluidStack(Materials.meteorite.getFluid(), 9), new FluidStack(TinkerFluids
                 .obsidian, 9));
         registerTinkerAlloy(new FluidStack(Materials.lumix.getFluid(), 1), new FluidStack(Materials.palladium.getFluid(), 1), new FluidStack
                 (Materials.terrax.getFluid(), 1));
-        registerTinkerAlloy(new FluidStack(obsidioriteFluid, 1), new FluidStack(meteoriteFluid, 1), new FluidStack
+        registerTinkerAlloy(new FluidStack(Materials.obsidiorite.getFluid(), 1), new FluidStack(Materials.meteorite.getFluid(), 1), new FluidStack
                 (TinkerFluids.obsidian, 1));
         registerTinkerAlloy(new FluidStack(Materials.nucleum.getFluid(), 3), new FluidStack(Materials.proxii.getFluid(), 3), new FluidStack
                 (Materials.abyssum.getFluid(), 1), new FluidStack(Materials.osram.getFluid(), 1));

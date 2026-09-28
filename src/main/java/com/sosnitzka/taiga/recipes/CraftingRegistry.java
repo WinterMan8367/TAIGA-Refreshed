@@ -1,7 +1,5 @@
 package com.sosnitzka.taiga.recipes;
 
-import com.sosnitzka.taiga.Blocks;
-import com.sosnitzka.taiga.Items;
 import com.sosnitzka.taiga.Materials;
 import com.sosnitzka.taiga.TAIGA;
 import com.sosnitzka.taiga.util.UtilityMaterial;
@@ -25,9 +23,6 @@ public class CraftingRegistry {
         for (UtilityMaterial material : Materials.getAll()) {
             convertion(event, Item.getItemFromBlock(material.getBlock()), material.getIngot(), material.getNugget());
         }
-
-        convertion(event, Item.getItemFromBlock(Blocks.blockMeteorite), Items.meteoriteIngot, Items.meteoriteNugget);
-        convertion(event, Item.getItemFromBlock(Blocks.blockObsidiorite), Items.obsidioriteIngot, Items.obsidioriteNugget);
     }
 
     @SuppressWarnings("null")

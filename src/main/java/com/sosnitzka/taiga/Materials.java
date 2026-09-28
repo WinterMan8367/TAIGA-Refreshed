@@ -18,6 +18,9 @@ import slimeknights.tconstruct.library.materials.MaterialTypes;
 
 import static com.sosnitzka.taiga.MaterialTraits.*;
 import static slimeknights.tconstruct.library.utils.HarvestLevels.*;
+import static slimeknights.tconstruct.tools.TinkerTraits.crumbling;
+import static slimeknights.tconstruct.tools.TinkerTraits.alien;
+import static slimeknights.tconstruct.TConstruct.random;
 
 import java.util.LinkedHashSet;
 
@@ -82,8 +85,8 @@ public class Materials {
         new BlockDto(Material.GLASS, 10.0f, 15f, STONE, 1f))
         .crystal()
         .ore(new OreDto(Material.ROCK, 10.0f, 2.0f, STONE, 1.0F)
-            .explodableChance(0.5F)
-            .explosionChance(0.1F)
+            .explodableChance(0.5F, random.nextFloat() * 2F + 1.5F)
+            .explosionChance(0.1F, 1.5F)
             .dropItemAndXp(InternalItem.CRYSTAL, 3, 10))
         .fluid(new FluidDto(0xFFd4ff00, 550, 10, 6000))
         .material(MaterialDto.builder()
@@ -228,7 +231,7 @@ public class Materials {
         new BlockDto(Material.GLASS, 18f, 18f, DIAMOND, 0.73f))
         .crystal()
         .ore(new OreDto(Material.GLASS, 18f, 18f, DIAMOND, 0.73f)
-            .explodableChance(0.5F)
+            .explodableChance(0.5F, random.nextFloat() * 4F + 1.5F)
             .dropItemAndXp(InternalItem.CRYSTAL, 3, 10))
         .fluid(new FluidDto(0xFF79aea6, 1500, 10, 5000));
 
@@ -465,15 +468,26 @@ public class Materials {
             .isCastable(false).build())
         .traits(MaterialTraits.softy);
 
-    // public static UtilityMaterial meteorite = new UtilityMaterial("meteorite", TextFormatting.DARK_GREEN,
-    //     new BlockDto(null, 0F, 0F, COBALT))
-    //     .fluid(new FluidDto(0xFF374f3d, 950, 10, 7000))
-    //     .material(MaterialDto.builder()
-    //         .headStats(new HeadMaterialStats(1500, 1.5f, 1.5f, OBSIDIAN))
-    //         .handleStats(new HandleMaterialStats(0.5F, 0))
-    //         .extraDurability(0)
-    //         .isCraftable(false)
-    //         .isCastable(true).build())
-    //     .traits(MaterialTypes.HEAD, crumbling)
-    //     .traits(MaterialTraits.pulverizing);
+    public static UtilityMaterial meteorite = new UtilityMaterial("meteorite", TextFormatting.DARK_GREEN,
+        new BlockDto(Material.ROCK, 40f, 2000f, COBALT, 0.15f))
+        .fluid(new FluidDto(0xFF374f3d, 950, 10, 7000))
+        .material(MaterialDto.builder()
+            .headStats(new HeadMaterialStats(1500, 1.5f, 1.5f, OBSIDIAN))
+            .handleStats(new HandleMaterialStats(0.5F, 0))
+            .extraDurability(0)
+            .isCraftable(false)
+            .isCastable(true).build())
+        .traits(MaterialTypes.HEAD, crumbling)
+        .traits(MaterialTraits.pulverizing);
+
+    public static UtilityMaterial obsidiorite = new UtilityMaterial("obsidiorite", 0xFF224853,
+        new BlockDto(Material.ROCK, 50f, 4000f, DURANITE, 0.2f))
+        .fluid(new FluidDto(0xFF224853, 1050, 10, 7000))
+        .material(MaterialDto.builder()
+            .headStats(new HeadMaterialStats(1500, 0.5f, 0.5f, COBALT))
+            .handleStats(new HandleMaterialStats(1.0F, -100))
+            .extraDurability(100)
+            .isCraftable(false)
+            .isCastable(true).build())
+        .traits(alien);
 }

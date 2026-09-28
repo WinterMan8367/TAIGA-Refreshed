@@ -2,14 +2,7 @@ package com.sosnitzka.taiga;
 
 
 import com.sosnitzka.taiga.traits.*;
-import net.minecraft.util.text.TextFormatting;
-import slimeknights.tconstruct.library.materials.Material;
-import slimeknights.tconstruct.library.materials.MaterialTypes;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
-
-import static com.sosnitzka.taiga.Fluids.obsidioriteFluid;
-import static slimeknights.tconstruct.tools.TinkerTraits.alien;
-import static slimeknights.tconstruct.tools.TinkerTraits.crumbling;
 
 public class MaterialTraits {
 
@@ -54,7 +47,4 @@ public class MaterialTraits {
     public static final AbstractTrait berserk = new TraitBerserk();
     public static final AbstractTrait crushing = new TraitCrushing();
     public static final AbstractTrait mutate = new TraitMutate();
-
-    public static Material meteorite = new Material("meteorite", TextFormatting.DARK_GREEN).addTrait(crumbling, MaterialTypes.HEAD).addTrait(pulverizing);
-    public static Material obsidiorite = new Material("obsidiorite", obsidioriteFluid.getColor()).addTrait(alien);
 }

@@ -19,15 +19,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 import slimeknights.tconstruct.library.MaterialIntegration;
-import slimeknights.tconstruct.library.materials.BowMaterialStats;
 
 import java.util.List;
 
-import static com.sosnitzka.taiga.Fluids.*;
-import static com.sosnitzka.taiga.MaterialTraits.*;
 import static com.sosnitzka.taiga.util.Utils.integrateMaterial;
 import static com.sosnitzka.taiga.util.Utils.integrateOre;
-import static slimeknights.tconstruct.library.utils.HarvestLevels.*;
 
 @Mod(modid = TAIGA.MODID, version = TAIGA.VERSION, guiFactory = TAIGA.GUIFACTORY, dependencies =
         "required-after:tconstruct@[1.10.2-2.5.0,);" + "required-after:mantle@[1.10.2-1.0.0,)")
@@ -128,10 +124,5 @@ public class TAIGA {
                 materialStats.getBowStats()
             );
         }
-
-        BowMaterialStats shitty = new BowMaterialStats(0.2f, 0.4f, -1f);
-
-        integrateMaterial("Meteorite", meteorite, meteoriteFluid, 1500, 1.5f, 1.5f, .5f, 0, 0, OBSIDIAN, shitty);
-        integrateMaterial("Obsidiorite", obsidiorite, obsidioriteFluid, 1500, .5f, .5f, 1, -100, 100, COBALT, shitty);
     }
 }

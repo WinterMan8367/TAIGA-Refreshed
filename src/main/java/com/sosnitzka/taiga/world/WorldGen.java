@@ -56,7 +56,7 @@ public class WorldGen implements IWorldGenerator {
 
         meteorChunkStats.put(dim, meteorChunkStats.get(dim) + 1);
         meteorGenStats.put(meteorGenStats.get(dim), meteorGenStats.get(dim) + Generator.generateMeteor(Materials.duranite.getOre()
-                .getDefaultState(), blockMeteorite.getDefaultState(), random, x, z, world, DURANITE_VAL, 6, 16, 112));
+                .getDefaultState(), blockMeteoriteStone.getDefaultState(), random, x, z, world, DURANITE_VAL, 6, 16, 112));
         Generator.generateOreDescending(newArrayList(Blocks.LAVA.getDefaultState(), Blocks.FLOWING_LAVA
                 .getDefaultState()), Materials.basalt.getBlock().getDefaultState(), random, x, z, world, BASALT_VAL, 0, 64);
         Generator.generateOreDescending(newArrayList(Blocks.BEDROCK.getDefaultState()), Materials.eezo.getOre().getDefaultState(),
@@ -91,7 +91,7 @@ public class WorldGen implements IWorldGenerator {
     }
 
     private void world(Random random, int x, int z, World world) {
-        Generator.generateMeteor(Materials.duranite.getOre().getDefaultState(), blockMeteorite.getDefaultState(), random, x, z,
+        Generator.generateMeteor(Materials.duranite.getOre().getDefaultState(), blockMeteoriteStone.getDefaultState(), random, x, z,
                 world, DURANITE_VAL, 6, 16, 112);
         Generator.generateOreDescending(newArrayList(Blocks.LAVA.getDefaultState(), Blocks.FLOWING_LAVA
                 .getDefaultState()), Materials.basalt.getBlock().getDefaultState(), random, x, z, world, BASALT_VAL, 0, 64);
@@ -122,7 +122,7 @@ public class WorldGen implements IWorldGenerator {
     }
 
     private void end(Random random, int x, int z, World world) {
-        Generator.generateCube(true, Materials.uru.getOre().getDefaultState(), blockObsidiorite.getDefaultState(), random, x, z,
+        Generator.generateCube(true, Materials.uru.getOre().getDefaultState(), blockObsidioriteStone.getDefaultState(), random, x, z,
                 world, URU_VAL, 2, 0, 96, 3);
         if (endGen) {
             Generator.generateOre(Blocks.AIR.getDefaultState(), Blocks.END_STONE.getDefaultState(), null, null,
@@ -144,7 +144,7 @@ public class WorldGen implements IWorldGenerator {
      * Spawns nether/end ores in the Overworld if the server has allow-nether set to 0 WIP: needs alternate textures
      */
     private void worldNetherless(Random random, int x, int z, World world) {
-        Generator.generateCube(true, Materials.uru.getOre().getDefaultState(), blockObsidiorite.getDefaultState(), random, x, z,
+        Generator.generateCube(true, Materials.uru.getOre().getDefaultState(), blockObsidioriteStone.getDefaultState(), random, x, z,
                 world, URU_VAL, 2, 0, 96, 3);
         Generator.generateOre(Materials.aurorium.getOre().getDefaultState(), from(BlockStone.EnumType.DIORITE), random, x, z, world,
                 AURORIUM_VAL, 8, 48, 2, 4);

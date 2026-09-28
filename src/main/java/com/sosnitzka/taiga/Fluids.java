@@ -13,9 +13,6 @@ import java.lang.reflect.Field;
 import static com.sosnitzka.taiga.util.Utils.registerFluid;
 
 public class Fluids {
-    public static BasicTinkerFluid meteoriteFluid = new BasicTinkerFluid("meteorite_fluid", 0xFF374f3d, 950, 10, 7000);
-    public static BasicTinkerFluid obsidioriteFluid = new BasicTinkerFluid("obsidiorite_fluid", 0xFF224853, 1050, 10,
-            7000);
     public static BasicTinkerFluid magmaFluid = new BasicTinkerFluid("magma_fluid", 0xFFffc000, 2000, 10, 5000);
     public static BasicTinkerFluid nitroniteFluid = new BasicTinkerFluid("nitronite_fluid", 0xFFCCFF00, 3100, 10, 5000);
 
@@ -55,8 +52,10 @@ public class Fluids {
      * Registers special smeltery recipes (not alloying)
      */
     static void registerfromItem() {
-        TinkerRegistry.registerMelting(Blocks.blockMeteoriteCobble, meteoriteFluid, 288);
-        TinkerRegistry.registerMelting(Blocks.blockObsidioriteCobble, obsidioriteFluid, 288);
+        TinkerRegistry.registerMelting(Blocks.blockMeteoriteStone, Materials.meteorite.getFluid(), 288);
+        TinkerRegistry.registerMelting(Blocks.blockMeteoriteCobble, Materials.meteorite.getFluid(), 288);
+        TinkerRegistry.registerMelting(Blocks.blockObsidioriteStone, Materials.obsidiorite.getFluid(), 288);
+        TinkerRegistry.registerMelting(Blocks.blockObsidioriteCobble, Materials.obsidiorite.getFluid(), 288);
         TinkerRegistry.registerMelting(net.minecraft.init.Blocks.MAGMA, magmaFluid, 288);
         TinkerRegistry.registerMelting(Materials.dilithium.getCrystal(), Materials.dilithium.getFluid(), 72);
         TinkerRegistry.registerMelting(Materials.tiberium.getCrystal(), Materials.tiberium.getFluid(), 72);
